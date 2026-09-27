@@ -1,0 +1,778 @@
+<!DOCTYPE html>
+<html lang="fr" class="scroll-smooth">
+<head>
+	<script src="../assets/js/theme.js"></script>
+		<script src="../assets/js/nav.js" defer></script>
+		<link rel="stylesheet" href="../assets/css/app.css" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400&family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;0,9..144,700;1,9..144,400&display=swap" />
+		<meta charset="UTF-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1" />
+	<link rel="canonical" href="index.html" />
+<link rel="alternate" hreflang="en" href="../index.html" />
+<link rel="alternate" hreflang="fr" href="index.html" />
+<link rel="alternate" hreflang="x-default" href="../index.html" />
+	<meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)" />
+	<meta name="theme-color" content="#091b2e" media="(prefers-color-scheme: dark)" />
+	<meta property="og:type" content="website" />
+	<meta property="og:site_name" content="JK Glow" />
+	<meta property="og:title" content="JK Glow" />
+	<meta property="og:locale" content="fr_FR" />
+	<meta property="og:locale:alternate" content="en_GB" />
+	<meta property="og:image" content="../assets/img/og-cover.png" />
+	<meta name="twitter:card" content="summary_large_image" />
+	<link rel="icon" href="../favicon.svg" type="image/svg+xml" />
+	<link rel="apple-touch-icon" href="../assets/img/apple-touch-icon.png" />
+	
+</head><body class="bg-bg text-fg antialiased">
+<div class="pointer-events-none fixed bottom-5 right-5 z-50 hidden sm:block" aria-hidden="true">
+	<svg viewBox="0 0 44 44" class="h-11 w-11 -rotate-90">
+		<circle cx="22" cy="22" r="19" fill="none" stroke="currentColor" stroke-width="2" class="text-fg-subtle opacity-25" />
+		<circle cx="22" cy="22" r="19" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" class="progress-ring text-accent" style="--dash:119.4" />
+	</svg>
+</div>
+
+<a
+	href="#main"
+	class="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-[100] focus:rounded-full focus:bg-brand focus:px-5 focus:py-2.5 focus:text-sm focus:font-semibold focus:text-brand-fg"
+>Skip to content</a>
+
+<input type="checkbox" id="jkglow-theme" class="sr-only" />
+<input type="checkbox" id="jkglow-nav" class="peer sr-only" />
+
+<header class="header-shell sticky top-0 z-50 border-b border-line bg-bg/85 backdrop-blur-xl">
+	<div class="wrap">
+		<div class="flex h-18 items-center justify-between gap-4">
+			<a href="index.html" class="flex items-center gap-2.5" aria-label="JK Glow — home">
+				<span class="brand-mark grid h-9 w-9 place-items-center rounded-xl bg-ink-900 text-white shadow-soft dark:bg-white dark:text-ink-900">
+					<svg viewBox="0 0 24 24" class="h-5 w-5" fill="none" aria-hidden="true">
+						<path d="M12 17.4c-4.4-.7-7.2-4-6.7-7.7C5.9 6 8.3 3.4 12 3.4s6.1 2.6 6.7 6.3c.5 3.7-2.3 7-6.7 7.7Z" fill="currentColor" />
+						<path d="M12 17.4v5.2" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" />
+					</svg>
+				</span>
+				<span class="flex flex-col leading-none">
+					<span class="font-display text-[1.0625rem] font-semibold tracking-tight">JK Glow</span>
+					<span class="mt-0.5 text-[0.5625rem] font-semibold uppercase tracking-[0.2em] text-fg-subtle">Madagascar</span>
+				</span>
+			</a>
+
+			<nav class="hidden items-center gap-7 lg:flex" aria-label="Main">
+									<a
+						href="index.html"
+						class="nav-link"
+						aria-current="page"					>Accueil</a>
+									<a
+						href="a-propos.html"
+						class="nav-link"
+											>À propos</a>
+									<a
+						href="index.html#brands"
+						class="nav-link"
+						aria-current="page"					>Nos marques</a>
+									<a
+						href="index.html#for-professionals"
+						class="nav-link"
+											>Pour les pros</a>
+									<a
+						href="index.html#for-brands"
+						class="nav-link"
+											>Pour les marques</a>
+									<a
+						href="contact.html"
+						class="nav-link"
+											>Contact</a>
+							</nav>
+
+			<div class="flex items-center gap-2.5">
+				<label
+					for="jkglow-theme"
+					class="grid h-10 w-10 cursor-pointer place-items-center rounded-full border border-line text-fg-muted transition hover:border-line-strong hover:text-fg"
+					title="Switch light / dark"
+				>
+					<span class="sr-only">Switch light / dark theme</span>
+					<svg class="theme-icon-moon h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true">
+						<path stroke-linecap="round" stroke-linejoin="round" d="M20.25 14.4A8.25 8.25 0 0 1 9.6 3.75a8.25 8.25 0 1 0 10.65 10.65Z" />
+					</svg>
+					<svg class="theme-icon-sun h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true">
+						<path stroke-linecap="round" stroke-linejoin="round" d="M12 3.75v-1.5m0 19.5v-1.5M4.5 12H3m18 0h-1.5M6.7 6.7 5.6 5.6m12.8 12.8-1.1-1.1m0-11.6 1.1-1.1M5.6 18.4l1.1-1.1" />
+						<circle cx="12" cy="12" r="3.75" />
+					</svg>
+				</label>
+
+				<div class="lang-switch" role="group" aria-label="Language">
+					<a href="../index.html" hreflang="en" lang="en"  rel="prefetch">
+						<svg class="flag" viewBox="0 0 24 16" width="22" height="15" aria-hidden="true" focusable="false"><rect width="24" height="16" fill="#012169"/><path d="M0 0l24 16M24 0L0 16" stroke="#ffffff" stroke-width="3.2"/><path d="M0 0l24 16M24 0L0 16" stroke="#c8102e" stroke-width="1.6"/><path d="M12 0v16M0 8h24" stroke="#ffffff" stroke-width="5.3"/><path d="M12 0v16M0 8h24" stroke="#c8102e" stroke-width="3.1"/></svg><span class="sr-only">English</span></a>
+					<a href="index.html" hreflang="fr" lang="fr" aria-current="true">
+						<svg class="flag" viewBox="0 0 24 16" width="22" height="15" aria-hidden="true" focusable="false"><rect width="8" height="16" fill="#002654"/><rect x="8" width="8" height="16" fill="#ffffff"/><rect x="16" width="8" height="16" fill="#ce1126"/></svg><span class="sr-only">Français</span></a>
+				</div>
+
+				<a href="contact.html" class="btn btn-primary btn-md hidden lg:inline-flex">
+					Devenir partenaire				</a>
+
+				<label
+					for="jkglow-nav"
+					class="grid h-10 w-10 cursor-pointer place-items-center rounded-full border border-line text-fg transition hover:border-line-strong peer-focus-visible:ring-2 peer-focus-visible:ring-brand lg:hidden"
+				>
+					<span class="sr-only">Open menu</span>
+					<svg viewBox="0 0 24 24" class="h-5 w-5" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path stroke-linecap="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" /></svg>
+				</label>
+			</div>
+		</div>
+	</div>
+
+	<div class="hidden max-h-[calc(100dvh-4.5rem)] overflow-y-auto border-t border-line bg-bg shadow-panel peer-checked:block lg:hidden">
+		<div class="nav-drawer-panel wrap flex flex-col gap-1 py-6">
+							<a
+					href="index.html"
+					class="rounded-xl px-3 py-3 text-base font-medium text-fg"
+				>Accueil</a>
+							<a
+					href="a-propos.html"
+					class="rounded-xl px-3 py-3 text-base font-medium text-fg-muted"
+				>À propos</a>
+							<a
+					href="index.html#brands"
+					class="rounded-xl px-3 py-3 text-base font-medium text-fg-muted"
+				>Nos marques</a>
+							<a
+					href="index.html#for-professionals"
+					class="rounded-xl px-3 py-3 text-base font-medium text-fg-muted"
+				>Pour les pros</a>
+							<a
+					href="index.html#for-brands"
+					class="rounded-xl px-3 py-3 text-base font-medium text-fg-muted"
+				>Pour les marques</a>
+							<a
+					href="contact.html"
+					class="rounded-xl px-3 py-3 text-base font-medium text-fg-muted"
+				>Contact</a>
+			
+			<div class="my-4 h-px bg-line"></div>
+
+			<div class="flex items-center justify-between gap-4 px-3">
+				<div class="lang-switch" role="group" aria-label="Language">
+					<a href="../index.html" hreflang="en" lang="en" >
+						<svg class="flag" viewBox="0 0 24 16" width="22" height="15" aria-hidden="true" focusable="false"><rect width="24" height="16" fill="#012169"/><path d="M0 0l24 16M24 0L0 16" stroke="#ffffff" stroke-width="3.2"/><path d="M0 0l24 16M24 0L0 16" stroke="#c8102e" stroke-width="1.6"/><path d="M12 0v16M0 8h24" stroke="#ffffff" stroke-width="5.3"/><path d="M12 0v16M0 8h24" stroke="#c8102e" stroke-width="3.1"/></svg><span class="sr-only">English</span></a>
+					<a href="index.html" hreflang="fr" lang="fr" aria-current="true">
+						<svg class="flag" viewBox="0 0 24 16" width="22" height="15" aria-hidden="true" focusable="false"><rect width="8" height="16" fill="#002654"/><rect x="8" width="8" height="16" fill="#ffffff"/><rect x="16" width="8" height="16" fill="#ce1126"/></svg><span class="sr-only">Français</span></a>
+				</div>
+				<span class="text-xs font-semibold uppercase tracking-[0.18em] text-fg-subtle">Language</span>
+			</div>
+
+			<a href="contact.html" class="btn btn-primary btn-lg mt-4 w-full">
+				Devenir partenaire			</a>
+		</div>
+	</div>
+</header>
+
+<main id="main">
+<section class="relative overflow-hidden bg-bg-subtle">
+	<div class="wash" aria-hidden="true"></div>
+	<div class="grid-lines pointer-events-none absolute inset-0 opacity-60 parallax-host" aria-hidden="true"></div>
+
+	<div class="wrap relative">
+		<div class="hero-shell grid items-center gap-16 lg:grid-cols-[1.05fr_0.95fr] lg:gap-20">
+			<div class="reveal">
+				<p class="eyebrow">Partenaire officiel de distribution SKIN1004</p>
+
+				<h1 class="page-title text-mask enter-mask mt-7 font-display text-display-1 font-semibold">
+					La distribution K-Beauty,<br class="hidden sm:block" />
+					pensée pour <span class="text-gradient text-gradient-animated gradient-text-shift">Madagascar</span>
+				</h1>
+
+				<p class="measure mt-7 text-lede text-fg-muted">Nous apportons des marques coréennes sélectionnées à Madagascar via la distribution professionnelle, des partenariats retail et le développement du marché local.</p>
+
+				<div class="mt-10 flex flex-wrap items-center gap-3">
+					<a href="#brands" class="btn btn-primary btn-lg arrow-shift">
+						Découvrir nos marques						<svg viewBox="0 0 24 24" class="h-5 w-5" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12h15m0 0-6-6m6 6-6 6" /></svg>					</a>
+					<a href="contact.html" class="btn btn-secondary btn-lg">Devenir partenaire</a>
+				</div>
+
+				<ul class="mt-11 flex flex-wrap gap-x-6 gap-y-3 text-sm text-fg-muted">
+											<li class="flex items-center gap-2">
+							<svg viewBox="0 0 24 24" class="h-4 w-4 text-accent" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="m4.5 12.75 6 6 9-13.5" /></svg>							Pharmacies						</li>
+											<li class="flex items-center gap-2">
+							<svg viewBox="0 0 24 24" class="h-4 w-4 text-accent" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="m4.5 12.75 6 6 9-13.5" /></svg>							Professionnels de la beauté						</li>
+											<li class="flex items-center gap-2">
+							<svg viewBox="0 0 24 24" class="h-4 w-4 text-accent" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="m4.5 12.75 6 6 9-13.5" /></svg>							Détaillants						</li>
+									</ul>
+			</div>
+
+			<div class="reveal" style="--reveal-delay:120ms">
+				<div class="card relative overflow-hidden">
+					<div class="parallax relative aspect-4/3 overflow-hidden bg-gradient-to-br from-azure-100 via-azure-50 to-ink-100 dark:from-azure-900 dark:via-ink-900 dark:to-ink-950" style="--i:1">
+						<img
+							src="../assets/img/leaf-cluster.svg"
+							alt=""
+							class="h-full w-full scale-105 object-contain"
+							width="400"
+							height="400"
+						/>
+						<div class="absolute inset-x-0 bottom-0 h-28 bg-gradient-to-t from-surface to-transparent"></div>
+						<span class="absolute left-5 top-5 inline-flex items-center gap-2 rounded-full border border-azure-500/20 bg-white/85 px-3 py-1.5 text-xs font-semibold text-azure-700 shadow-soft backdrop-blur dark:border-azure-300/25 dark:bg-ink-950/70 dark:text-azure-200">
+							<span class="pulse-dot glow-breathe" aria-hidden="true"></span>
+							Actif depuis le lancement						</span>
+					</div>
+					<div class="relative -mt-10 p-6 pt-0 sm:p-7 sm:pt-0">
+						<div class="card flex items-center gap-4 p-5">
+							<span class="grid h-12 w-12 shrink-0 place-items-center rounded-xl bg-ink-900 text-white dark:bg-white dark:text-ink-900" aria-hidden="true">
+								<svg viewBox="0 0 24 24" class="h-5 w-5" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M12 17.4c-4.4-.7-7.2-4-6.7-7.7C5.9 6 8.3 3.4 12 3.4s6.1 2.6 6.7 6.3c.5 3.7-2.3 7-6.7 7.7Z" fill="currentColor" /><path d="M12 17.4v5.2" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" /></svg>							</span>
+							<div class="min-w-0">
+								<p class="font-display text-xl font-semibold">SKIN1004</p>
+								<p class="mt-0.5 text-sm text-fg-muted">Distribution officielle à Madagascar</p>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</section>
+
+<section class="border-y border-line bg-bg py-8" aria-label="Channels we serve">
+	<div class="wrap">
+		<p class="text-center text-xs font-semibold uppercase tracking-[0.2em] text-fg-subtle">Nous fournissons</p>
+		<div class="relative mt-6 overflow-hidden [mask-image:linear-gradient(90deg,transparent,#000_10%,#000_90%,transparent)]">
+			<div class="flex w-max animate-marquee items-center gap-3 hover:[animation-play-state:paused]">
+									<ul class="flex shrink-0 items-center gap-3 pr-3" >
+													<li class="chip">Pharmacies &amp; Parapharmacies</li>
+													<li class="chip">Instituts &amp; Spas</li>
+													<li class="chip">Concept Stores</li>
+													<li class="chip">Retailers spécialisés</li>
+													<li class="chip">Hôtels &amp; Hospitalité</li>
+											</ul>
+									<ul class="flex shrink-0 items-center gap-3 pr-3" aria-hidden="true">
+													<li class="chip">Pharmacies &amp; Parapharmacies</li>
+													<li class="chip">Instituts &amp; Spas</li>
+													<li class="chip">Concept Stores</li>
+													<li class="chip">Retailers spécialisés</li>
+													<li class="chip">Hôtels &amp; Hospitalité</li>
+											</ul>
+							</div>
+		</div>
+	</div>
+</section>
+
+<div class="ticker-strip" aria-label="Catégories et canaux">
+	<div class="ticker-track">
+		<span class="ticker-set">Sérums · Crèmes · Toniques · Masques · Pharmacies · Instituts de beauté · Magasins concepts · Détaillants · Antananarivo · Toamasina · Madagascar</span>
+		<span class="ticker-set" aria-hidden="true">Sérums · Crèmes · Toniques · Masques · Pharmacies · Instituts de beauté · Magasins concepts · Détaillants · Antananarivo · Toamasina · Madagascar</span>
+	</div>
+</div>
+
+<section id="brands" class="scroll-mt-28 section-y">
+	<div class="wrap">
+		<div class="scroll-fade grid items-center gap-14 lg:grid-cols-[0.95fr_1.05fr] lg:gap-20" style="--i:1">
+			<div>
+				<p class="eyebrow">Nos marques</p>
+				<h2 class="mt-6 font-display text-display-2 font-semibold">Une K-Beauty sélectionnée pour le marché malgache</h2>
+				<p class="measure mt-6 text-fg-muted">SKIN1004 est reconnue pour ses formules à base de Centella Asiatica d’une grande pureté, originaire de Madagascar. Nous distribuons SKIN1004 aux pharmacies, professionnels de la beauté et détaillants sélectionnés à Madagascar.</p>
+				<div class="mt-9 flex flex-wrap gap-3">
+					<a href="#for-professionals" class="btn btn-primary btn-md">Commander SKIN1004</a>
+					<a href="contact.html" class="btn btn-secondary btn-md">Trouver un revendeur</a>
+				</div>
+				<p class="measure-tight mt-9 border-l-2 border-line-strong pl-4 text-xs leading-relaxed text-fg-subtle">JK Glow est le distributeur officiel de SKIN1004 à Madagascar. JK Glow est indépendant et n’appartient pas à SKIN1004.</p>
+			</div>
+
+			<div class="scroll-fade-late" style="--i:2">
+				<div class="card card-hover hover-lift overflow-hidden p-8 sm:p-10">
+					<div class="flex items-center gap-4">
+						<span class="grid h-16 w-16 place-items-center rounded-2xl bg-ink-900 text-white dark:bg-white dark:text-ink-900" aria-hidden="true">
+							<svg viewBox="0 0 24 24" class="h-8 w-8" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M12 17.4c-4.4-.7-7.2-4-6.7-7.7C5.9 6 8.3 3.4 12 3.4s6.1 2.6 6.7 6.3c.5 3.7-2.3 7-6.7 7.7Z" fill="currentColor" /><path d="M12 17.4v5.2" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" /></svg>						</span>
+						<div>
+							<p class="font-display text-2xl font-semibold">SKIN1004</p>
+							<p class="mt-1 text-sm text-fg-muted">Partenaire de distribution officiel à Madagascar</p>
+						</div>
+					</div>
+
+					<dl class="mt-10 grid gap-7 sm:grid-cols-2">
+													<div>
+								<dt class="text-xs font-semibold uppercase tracking-wider text-fg-subtle">Spécialité</dt>
+								<dd class="mt-2 text-sm text-fg-muted">
+																			Centella Asiatica haute pureté																	</dd>
+							</div>
+													<div>
+								<dt class="text-xs font-semibold uppercase tracking-wider text-fg-subtle">Origine</dt>
+								<dd class="mt-2 text-sm text-fg-muted">
+																			Madagascar																	</dd>
+							</div>
+													<div>
+								<dt class="text-xs font-semibold uppercase tracking-wider text-fg-subtle">Canaux</dt>
+								<dd class="mt-2 text-sm text-fg-muted">
+																			Pharmacies, professionnels, retail																	</dd>
+							</div>
+													<div>
+								<dt class="text-xs font-semibold uppercase tracking-wider text-fg-subtle">Statut</dt>
+								<dd class="mt-2 text-sm text-fg-muted">
+																			Actif																	</dd>
+							</div>
+											</dl>
+				</div>
+			</div>
+		</div>
+	</div>
+</section>
+
+<section class="bg-bg-subtle section-y">
+	<div class="wrap">
+		<div class="scroll-fade measure" style="--i:3">
+			<p class="eyebrow">Pourquoi JK Glow</p>
+			<h2 class="mt-6 font-display text-display-2 font-semibold">Un distributeur fondé sur la qualité produit, pas sur des promesses</h2>
+		</div>
+
+		<div class="mt-14 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
+							<article class="card card-hover hover-lift reveal p-7" style="--reveal-delay:0ms">
+					<span class="grid h-11 w-11 place-items-center rounded-xl bg-azure-100 text-azure-700 dark:bg-azure-900/60 dark:text-azure-200" aria-hidden="true">
+						<svg viewBox="0 0 24 24" class="h-5 w-5" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75 11.25 15 15 9.75M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" /></svg>					</span>
+					<h3 class="mt-6 font-semibold">Expertise K-Beauty</h3>
+					<p class="mt-2.5 text-sm leading-relaxed text-fg-muted">Partenaire officiel de distribution SKIN1004.</p>
+				</article>
+							<article class="card card-hover hover-lift reveal p-7" style="--reveal-delay:80ms">
+					<span class="grid h-11 w-11 place-items-center rounded-xl bg-azure-100 text-azure-700 dark:bg-azure-900/60 dark:text-azure-200" aria-hidden="true">
+						<svg viewBox="0 0 24 24" class="h-5 w-5" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M12 21a9 9 0 1 0 0-18 9 9 0 0 0 0 18Z" /><path stroke-linecap="round" stroke-linejoin="round" d="M3.6 9h16.8M3.6 15h16.8M12 3a15 15 0 0 1 0 18 15 15 0 0 1 0-18Z" /></svg>					</span>
+					<h3 class="mt-6 font-semibold">Connaissance du marché local</h3>
+					<p class="mt-2.5 text-sm leading-relaxed text-fg-muted">Basés à Madagascar avec une compréhension fine du marché de la beauté.</p>
+				</article>
+							<article class="card card-hover hover-lift reveal p-7" style="--reveal-delay:160ms">
+					<span class="grid h-11 w-11 place-items-center rounded-xl bg-azure-100 text-azure-700 dark:bg-azure-900/60 dark:text-azure-200" aria-hidden="true">
+						<svg viewBox="0 0 24 24" class="h-5 w-5" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M18 18.72a9.09 9.09 0 0 0 3.74-6.94 3 3 0 0 0-3.02-3.02 9.06 9.06 0 0 0-1.6.24 5.1 5.1 0 0 0-4.9-4.9c-.54-.13-1.1-.2-1.6-.24a3 3 0 0 0-3.02 3.02 9.09 9.09 0 0 0 3.74 6.94 9.06 9.06 0 0 0 1.5.47 9.06 9.06 0 0 0 1.6-.24 5.1 5.1 0 0 0 4.9 4.9c.54.13 1.1.2 1.6.24a9.06 9.06 0 0 0 1.5-.47Z" /></svg>					</span>
+					<h3 class="mt-6 font-semibold">Réseau B2B</h3>
+					<p class="mt-2.5 text-sm leading-relaxed text-fg-muted">Pharmacies, professionnels de la beauté, détaillants et boutiques spécialisées.</p>
+				</article>
+							<article class="card card-hover hover-lift reveal p-7" style="--reveal-delay:240ms">
+					<span class="grid h-11 w-11 place-items-center rounded-xl bg-azure-100 text-azure-700 dark:bg-azure-900/60 dark:text-azure-200" aria-hidden="true">
+						<svg viewBox="0 0 24 24" class="h-5 w-5" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M2.25 18 9 11.25l4.5 4.5L21.75 7.5M15.75 7.5h6v6" /></svg>					</span>
+					<h3 class="mt-6 font-semibold">Développement de marque</h3>
+					<p class="mt-2.5 text-sm leading-relaxed text-fg-muted">Distribution, développement commercial et activation locale.</p>
+				</article>
+					</div>
+	</div>
+</section>
+
+<section id="for-professionals" class="scroll-mt-28 section-y">
+	<div class="wrap">
+		<div class="grid items-start gap-14 lg:grid-cols-2 lg:gap-20 stagger-children">
+			<div class="scroll-fade" style="--i:4">
+				<p class="eyebrow">Pour les professionnels</p>
+				<h2 class="mt-6 font-display text-display-2 font-semibold">Apportez la K-Beauty à vos clients</h2>
+				<p class="measure mt-6 text-fg-muted">JK Glow collabore avec les pharmacies, instituts de beauté, concept stores, détaillants et autres professionnels souhaitant proposer des marques coréennes sélectionnées à leurs clients.</p>
+
+				<ul class="mt-10 space-y-4">
+											<li class="flex items-start gap-3">
+							<svg viewBox="0 0 24 24" class="mt-0.5 h-5 w-5 shrink-0 text-accent" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="m4.5 12.75 6 6 9-13.5" /></svg>							<span class="text-sm text-fg-muted">Approvisionnement fiable de marques coréennes sélectionnées</span>
+						</li>
+											<li class="flex items-start gap-3">
+							<svg viewBox="0 0 24 24" class="mt-0.5 h-5 w-5 shrink-0 text-accent" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="m4.5 12.75 6 6 9-13.5" /></svg>							<span class="text-sm text-fg-muted">Formation marque pour vos équipes vente et beauté</span>
+						</li>
+											<li class="flex items-start gap-3">
+							<svg viewBox="0 0 24 24" class="mt-0.5 h-5 w-5 shrink-0 text-accent" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="m4.5 12.75 6 6 9-13.5" /></svg>							<span class="text-sm text-fg-muted">Développement commercial adapté à votre canal</span>
+						</li>
+									</ul>
+
+				<a href="contact.html" class="btn btn-primary btn-lg mt-11">Devenir partenaire JK Glow</a>
+			</div>
+
+			<div class="scroll-fade-late" style="--i:5">
+				<div class="card card-hover hover-lift p-8 sm:p-10">
+					<h3 class="text-xs font-semibold uppercase tracking-[0.18em] text-fg-subtle">Avec qui nous travaillons</h3>
+					<ul class="mt-7 grid gap-3 sm:grid-cols-2">
+													<li class="rounded-xl border border-line bg-surface-2 px-4 py-3.5 text-sm font-medium">Pharmacies &amp; Parapharmacies</li>
+													<li class="rounded-xl border border-line bg-surface-2 px-4 py-3.5 text-sm font-medium">Instituts &amp; Spas</li>
+													<li class="rounded-xl border border-line bg-surface-2 px-4 py-3.5 text-sm font-medium">Concept Stores</li>
+													<li class="rounded-xl border border-line bg-surface-2 px-4 py-3.5 text-sm font-medium">Retailers spécialisés</li>
+													<li class="rounded-xl border border-line bg-surface-2 px-4 py-3.5 text-sm font-medium">Hôtels &amp; Hospitalité</li>
+											</ul>
+					<div class="mt-8 flex items-center gap-3 rounded-xl border border-azure-500/20 bg-azure-50 px-4 py-3.5 dark:border-azure-400/20 dark:bg-azure-900/30">
+						<svg viewBox="0 0 24 24" class="h-5 w-5" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M12 8.25v.008M12 11.25v.008M12 14.25v.008" /></svg>						<p class="text-sm text-fg-muted">Parlez-nous de votre activité, nous vous proposerons l’assortiment adapté.</p>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</section>
+
+<section id="for-brands" class="scroll-mt-28 bg-bg-subtle section-y">
+	<div class="wrap">
+		<div class="grid items-start gap-14 lg:grid-cols-2 lg:gap-20">
+			<div class="scroll-fade lg:order-2 lg:pl-4" style="--i:6">
+				<p class="eyebrow">Pour les marques</p>
+				<h2 class="mt-6 font-display text-display-2 font-semibold">Vous êtes une marque coréenne et souhaitez entrer à Madagascar ?</h2>
+				<p class="measure mt-6 text-fg-muted">JK Glow accompagne des marques coréennes sélectionnées dans leur développement à Madagascar grâce à notre connaissance locale, la distribution et le développement commercial.</p>
+				<a href="contact.html" class="btn btn-secondary btn-lg mt-10">Étudier un partenariat</a>
+			</div>
+
+			<div class="grid gap-4 sm:grid-cols-2 lg:order-1 scrub-lift">
+									<article class="card card-hover hover-lift reveal p-6" style="--reveal-delay:0ms">
+						<h3 class="font-semibold">Accès marché</h3>
+						<p class="mt-2 text-sm leading-relaxed text-fg-muted">Insights locaux et positionnement.</p>
+					</article>
+									<article class="card card-hover hover-lift reveal p-6" style="--reveal-delay:80ms">
+						<h3 class="font-semibold">Distribution</h3>
+						<p class="mt-2 text-sm leading-relaxed text-fg-muted">Import, wholesale et distribution retail.</p>
+					</article>
+									<article class="card card-hover hover-lift reveal p-6" style="--reveal-delay:160ms">
+						<h3 class="font-semibold">Développement commercial</h3>
+						<p class="mt-2 text-sm leading-relaxed text-fg-muted">Prospection et développement des comptes.</p>
+					</article>
+									<article class="card card-hover hover-lift reveal p-6" style="--reveal-delay:240ms">
+						<h3 class="font-semibold">Activation</h3>
+						<p class="mt-2 text-sm leading-relaxed text-fg-muted">Soutien commercial et marketing local.</p>
+					</article>
+							</div>
+		</div>
+	</div>
+</section>
+
+<section id="about" class="scroll-mt-28 section-y">
+	<div class="wrap">
+		<div class="grid items-center gap-14 lg:grid-cols-[1.1fr_0.9fr] lg:gap-20 stagger-children">
+			<div class="scroll-fade" style="--i:7">
+				<p class="eyebrow">Notre histoire</p>
+				<h2 class="mt-6 font-display text-display-2 font-semibold">Des partenariats durables, construits étape par étape</h2>
+				<p class="measure mt-6 text-fg-muted">JK Glow est un distributeur basé à Madagascar, dédié aux marques coréennes sélectionnées pour les professionnels et les détaillants. Nous construisons des partenariats durables et des réseaux de distribution solides.</p>
+				<a href="a-propos.html" class="btn btn-secondary btn-lg mt-10">Découvrir notre histoire</a>
+			</div>
+
+			<ul class="scroll-fade-late grid gap-4" style="--i:0">
+									<li class="card card-hover hover-lift flex items-start gap-4 p-6">
+						<span class="grid h-10 w-10 shrink-0 place-items-center rounded-lg bg-azure-100 text-azure-700 dark:bg-azure-900/60 dark:text-azure-200" aria-hidden="true">
+							<svg viewBox="0 0 24 24" class="h-5 w-5" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M12 21a9 9 0 1 0 0-18 9 9 0 0 0 0 18Z" /><path stroke-linecap="round" stroke-linejoin="round" d="M12 7v5l3 2" /></svg>						</span>
+						<div>
+							<p class="text-sm font-semibold">Basés à Madagascar</p>
+							<p class="mt-1 text-sm text-fg-muted">Équipe locale, connaissance du marché.</p>
+						</div>
+					</li>
+									<li class="card card-hover hover-lift flex items-start gap-4 p-6">
+						<span class="grid h-10 w-10 shrink-0 place-items-center rounded-lg bg-azure-100 text-azure-700 dark:bg-azure-900/60 dark:text-azure-200" aria-hidden="true">
+							<svg viewBox="0 0 24 24" class="h-5 w-5" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M16.5 10.5V6.75a4.5 4.5 0 1 0-9 0v3.75m-.75 11.25h10.5a2.25 2.25 0 0 0 2.25-2.25v-6.75a2.25 2.25 0 0 0-2.25-2.25H6.75a2.25 2.25 0 0 0-2.25 2.25v6.75a2.25 2.25 0 0 0 2.25 2.25Z" /></svg>						</span>
+						<div>
+							<p class="text-sm font-semibold">Relations directes avec les marques</p>
+							<p class="mt-1 text-sm text-fg-muted">En lien direct avec les marques de beauté coréennes.</p>
+						</div>
+					</li>
+									<li class="card card-hover hover-lift flex items-start gap-4 p-6">
+						<span class="grid h-10 w-10 shrink-0 place-items-center rounded-lg bg-azure-100 text-azure-700 dark:bg-azure-900/60 dark:text-azure-200" aria-hidden="true">
+							<svg viewBox="0 0 24 24" class="h-5 w-5" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M2.25 18 9 11.25l4.5 4.5L21.75 7.5M15.75 7.5h6v6" /></svg>						</span>
+						<div>
+							<p class="text-sm font-semibold">Un réseau professionnel en croissance</p>
+							<p class="mt-1 text-sm text-fg-muted">Couverture étendue progressivement.</p>
+						</div>
+					</li>
+							</ul>
+		</div>
+	</div>
+</section>
+
+
+<section class="relative isolate overflow-hidden bg-ink-950 text-white">
+	<div class="ambient" aria-hidden="true">
+	<span class="orb orb-a blob parallax-drift"></span>
+	<span class="orb orb-b blob parallax-drift"></span>
+	<span class="orb-ring parallax-spin"></span>
+</div>
+	<div class="absolute inset-0 -z-20 parallax-host" aria-hidden="true">
+		<video
+			class="h-full w-full object-cover opacity-50"
+			autoplay
+			muted
+			loop
+			playsinline
+			preload="metadata"
+			poster="../assets/img/video-poster.png"
+			width="1280"
+			height="720"
+			aria-hidden="true"
+			tabindex="-1"
+		>
+			<source src="../assets/video/brand-film.mp4" type="video/mp4" />
+		</video>
+	</div>
+	<div class="absolute inset-0 -z-10 bg-gradient-to-b from-ink-950/85 via-ink-950/60 to-ink-950/90 parallax-host" aria-hidden="true"></div>
+	<div class="grid-lines pointer-events-none absolute inset-0 opacity-30 stagger-children parallax-host" aria-hidden="true"></div>
+
+	<div class="wrap relative section-y-lg text-center">
+		<p class="eyebrow scrub-tighten justify-center" style="--i:1">Film de marque</p>
+		<h2 class="reveal-up mx-auto mt-6 max-w-4xl font-display text-display-2 font-semibold text-white" style="--i:1">La K-Beauty, présentée comme il se doit</h2>
+		<p class="measure reveal-clip-up mx-auto mt-6 text-lede text-ink-200" style="--i:2">Un aperçu des produits, des emballages et des rituels de soin que nous introduisons à Madagascar. Tout ce que vous voyez provient de notre propre gamme, préparée pour la distribution locale.</p>
+		<div class="reveal-up mt-10 flex flex-wrap items-center justify-center gap-3" style="--i:3">
+			<a href="#brands" class="btn btn-inverse btn-lg">Découvrir la gamme</a>
+			<a href="contact.html" class="btn btn-outline-inverse btn-lg">Parlons-en</a>
+		</div>
+	</div>
+
+	<div class="scroll-progress absolute inset-x-0 bottom-0 h-1 bg-azure-400" aria-hidden="true"></div>
+</section>
+
+
+<section class="section-y">
+	<div class="wrap">
+		<p class="eyebrow reveal-up" style="--i:1">La gamme</p>
+		<h2 class="reveal-up mt-6 max-w-3xl font-display text-display-2 font-semibold" style="--i:1">Trois formats, une même exigence en rayon</h2>
+		<span class="scrub-track mt-5 block h-px w-24 bg-gradient-to-r from-accent to-transparent" style="--i:3" aria-hidden="true"></span>
+		<p class="measure reveal-clip-up mt-6 text-lede text-fg-muted" style="--i:2">Sérums, crèmes et toniques conçus pour supporter un climat chaud et humide et une chaîne logistique longue. Chaque format arrive étiqueté, scellé et prêt à vendre.</p>
+
+		<div class="mt-14 grid gap-6 sm:grid-cols-2 lg:grid-cols-3 stagger-children">
+						<article class="card reveal-mask tilt glow-hover hover-lift-lg overflow-hidden" style="--i:0">
+				<div class="media-frame sweep-overlay aspect-4/3 depth-shallow reveal-iris">
+					<img
+						src="../assets/img/showcase-serum.png"
+						alt="Flacons de sérum, de crème et de tonique réunis sur un fond marine"
+						width="900"
+						height="675"
+						loading="lazy"
+						decoding="async"
+					/>
+				</div>
+				<div class="p-6">
+					<h3 class="font-display text-xl font-semibold">Sérums</h3>
+					<p class="mt-3 text-sm leading-relaxed text-fg-muted">Ampoules concentrées et sérums hydratants en pipette et en pompe.</p>
+				</div>
+			</article>
+
+			<article class="card reveal-flip tilt glow-hover hover-lift-lg overflow-hidden" style="--i:1">
+				<div class="media-frame sweep-overlay aspect-4/3 depth-deep">
+					<img
+						src="../assets/img/showcase-cream.png"
+						alt="Pot de crème vu de près sur des anneaux lumineux concentriques"
+						width="900"
+						height="675"
+						loading="lazy"
+						decoding="async"
+					/>
+				</div>
+				<div class="p-6">
+					<h3 class="font-display text-xl font-semibold">Crèmes</h3>
+					<p class="mt-3 text-sm leading-relaxed text-fg-muted">Crèmes riches et réparatrices dans des pots larges, faciles à présenter en comptoir.</p>
+				</div>
+			</article>
+
+			<article class="card reveal-stretch tilt glow-hover hover-lift-lg overflow-hidden" style="--i:2">
+				<div class="media-frame sweep-overlay aspect-4/3 depth-shallow">
+					<img
+						src="../assets/img/showcase-toner.png"
+						alt="Flacon de tonique élancé sur un fond bleu doux"
+						width="900"
+						height="675"
+						loading="lazy"
+						decoding="async"
+					/>
+				</div>
+				<div class="p-6">
+					<h3 class="font-display text-xl font-semibold">Tonics</h3>
+					<p class="mt-3 text-sm leading-relaxed text-fg-muted">Tonics hydratants légers dans des flacons fins qui s'empilent proprement en rayon.</p>
+				</div>
+			</article>
+		</div>
+	</div>
+</section>
+
+
+<section class="relative isolate overflow-hidden bg-bg-subtle section-y">
+	<div class="drift-back pointer-events-none absolute inset-0 -z-10 opacity-25 parallax-host" aria-hidden="true">
+		<img src="../assets/img/texture-wash.png" alt="" width="1600" height="900" loading="lazy" decoding="async" class="h-full w-full object-cover" />
+	</div>
+
+	<div class="wrap">
+		<div class="grid items-center gap-14 lg:grid-cols-2 lg:gap-20 stagger-children">
+			<div class="reveal-left" style="--i:1">
+				<div class="media-frame sweep-overlay border-spin overflow-hidden rounded-4xl shadow-lift reveal-curtain depth-deep">
+					<img
+						src="../assets/img/ritual-flatlay.png"
+						alt="Flacons de sérum, de crème et de tonique réunis sur un fond marine"
+						width="1200"
+						height="1200"
+						loading="lazy"
+						decoding="async"
+					/>
+				</div>
+			</div>
+
+			<div class="reveal-right" style="--i:2">
+				<p class="eyebrow">Notre méthode</p>
+				<h2 class="mt-6 font-display text-display-2 font-semibold">Importer, dédouaner, stocker localement</h2>
+				<p class="measure mt-6 text-lede text-fg-muted">Nous prenons en charge ce qui rend la distribution difficile à Madagascar : le fret maritime, la douane, l'entreposage local et un stock réduit mais fiable à Antananarivo.</p>
+
+				<ol class="mt-10 space-y-5 stagger-children">
+										<li class="reveal-slide-in flex gap-4" style="--i:0">
+						<span class="bar-grow grid h-9 w-9 shrink-0 place-items-center rounded-full bg-ink-900 text-xs font-bold text-white dark:bg-white dark:text-ink-900" style="--i:0" aria-hidden="true">1</span>
+						<div>
+							<h3 class="font-semibold">Sélection</h3>
+							<p class="mt-1.5 text-sm leading-relaxed text-fg-muted">Nous évaluons chaque marque, sa demande à Madagascar et sa structure de marge avant de signer.</p>
+						</div>
+					</li>
+
+					<li class="reveal-slide-in-rtl flex gap-4" style="--i:1">
+						<span class="bar-grow grid h-9 w-9 shrink-0 place-items-center rounded-full bg-ink-900 text-xs font-bold text-white dark:bg-white dark:text-ink-900" style="--i:1" aria-hidden="true">2</span>
+						<div>
+							<h3 class="font-semibold">Logistique</h3>
+							<p class="mt-1.5 text-sm leading-relaxed text-fg-muted">Fret maritime vers Toamasina, dédouanement assuré en interne, puis transfert vers notre entrepôt d'Antananarivo.</p>
+						</div>
+					</li>
+
+					<li class="reveal-slide-in flex gap-4" style="--i:2">
+						<span class="bar-grow grid h-9 w-9 shrink-0 place-items-center rounded-full bg-ink-900 text-xs font-bold text-white dark:bg-white dark:text-ink-900" style="--i:2" aria-hidden="true">3</span>
+						<div>
+							<h3 class="font-semibold">Disponibilité</h3>
+							<p class="mt-1.5 text-sm leading-relaxed text-fg-muted">Les lignes phares sont stockées pour que le revendeur puisse recommander sans attendre six semaines.</p>
+						</div>
+					</li>
+
+					<li class="reveal-slide-in-rtl flex gap-4" style="--i:3">
+						<span class="bar-grow grid h-9 w-9 shrink-0 place-items-center rounded-full bg-ink-900 text-xs font-bold text-white dark:bg-white dark:text-ink-900" style="--i:3" aria-hidden="true">4</span>
+						<div>
+							<h3 class="font-semibold">Accompagnement</h3>
+							<p class="mt-1.5 text-sm leading-relaxed text-fg-muted">Formation produit, conseils de présentation et rappels de commande pour chaque partenaire.</p>
+						</div>
+					</li>
+				</ol>
+			</div>
+		</div>
+	</div>
+</section>
+
+
+<section class="section-y">
+	<div class="wrap">
+		<div class="grid items-center gap-14 lg:grid-cols-[0.95fr_1.05fr] lg:gap-20 stagger-children">
+			<div class="reveal-left" style="--i:1">
+				<p class="eyebrow">Couverture</p>
+				<h2 class="mt-6 font-display text-display-2 font-semibold">D'Antananarivo aux hautes terres</h2>
+				<p class="measure mt-6 text-lede text-fg-muted">Nous fournissons les pharmacies, les professionnels de la beauté et les détaillants sur toute l'île, avec livraison organisée pour Toamasina et les villes secondaires.</p>
+
+				<dl class="mt-12 grid grid-cols-2 gap-x-6 gap-y-9">
+										<div class="reveal-pop">
+						<dt class="sr-only">Marques distribuées</dt>
+						<dd class="font-display text-4xl font-semibold text-accent">
+							<span class="count-scroll" style="--target:12"></span>+
+							<span class="mt-2 block text-xs font-semibold uppercase tracking-[0.16em] text-fg-subtle">Marques distribuées</span>
+						</dd>
+					</div>
+
+					<div class="reveal-slide-in">
+						<dt class="sr-only">Partenaires actifs</dt>
+						<dd class="font-display text-4xl font-semibold text-accent">
+							<span class="count-scroll" style="--target:40"></span>+
+							<span class="mt-2 block text-xs font-semibold uppercase tracking-[0.16em] text-fg-subtle">Partenaires actifs</span>
+						</dd>
+					</div>
+
+					<div class="reveal-pop">
+						<dt class="sr-only">Villes desservies</dt>
+						<dd class="font-display text-4xl font-semibold text-accent">
+							<span class="count-scroll" style="--target:3"></span>
+							<span class="mt-2 block text-xs font-semibold uppercase tracking-[0.16em] text-fg-subtle">Villes desservies</span>
+						</dd>
+					</div>
+
+					<div class="reveal-slide-in">
+						<dt class="sr-only">Stock local</dt>
+						<dd class="font-display text-4xl font-semibold text-accent">
+							<span class="count-scroll" style="--target:100"></span>%
+							<span class="mt-2 block text-xs font-semibold uppercase tracking-[0.16em] text-fg-subtle">Stock local</span>
+						</dd>
+					</div>
+				</dl>
+			</div>
+
+			<div class="reveal-blur" style="--i:4">
+				<div class="media-frame sweep-overlay overflow-hidden rounded-4xl shadow-lift depth-shallow">
+					<img
+						src="../assets/img/map-madagascar.png"
+						alt="Contour de Madagascar avec des anneaux concentriques marquant la couverture de livraison"
+						width="1200"
+						height="700"
+						loading="lazy"
+						decoding="async"
+					/>
+				</div>
+			</div>
+		</div>
+	</div>
+</section>
+
+<section class="pb-24 sm:pb-28">
+	<div class="wrap">
+		<div class="reveal relative overflow-hidden rounded-4xl bg-ink-950 px-8 py-16 text-center shadow-panel sm:px-14 sm:py-20 dark:bg-ink-900">
+			<div class="wash opacity-70" aria-hidden="true"></div>
+			<div class="grid-lines pointer-events-none absolute inset-0 opacity-30 parallax-host" aria-hidden="true"></div>
+			<div class="relative">
+				<h2 class="mx-auto max-w-3xl font-display text-display-3 font-semibold text-white">
+					Développons votre assortiment K-Beauty				</h2>
+				<p class="measure mx-auto mt-6 text-base leading-relaxed text-ink-300">Dites-nous ce que vous vendez et où. Nous reviendrons vers vous avec les marques et les conditions adaptées à votre canal.</p>
+				<div class="mt-10 flex flex-wrap items-center justify-center gap-3">
+					<a href="contact.html" class="btn btn-inverse btn-lg">Démarrer la conversation</a>
+					<a href="contact.html" class="btn btn-outline-inverse btn-lg">Je suis une marque</a>
+				</div>
+			</div>
+		</div>
+	</div>
+</section>
+
+</main>
+
+<footer class="border-t border-line bg-bg-subtle">
+	<div class="wrap py-16 lg:py-20">
+		<div class="grid gap-12 sm:grid-cols-2 lg:grid-cols-4">
+			<div>
+				<a href="index.html" class="flex items-center gap-2.5" aria-label="JK Glow — home">
+					<span class="grid h-9 w-9 place-items-center rounded-xl bg-ink-900 text-white dark:bg-white dark:text-ink-900" aria-hidden="true">
+						<svg viewBox="0 0 24 24" class="h-5 w-5" fill="none"><path d="M12 17.4c-4.4-.7-7.2-4-6.7-7.7C5.9 6 8.3 3.4 12 3.4s6.1 2.6 6.7 6.3c.5 3.7-2.3 7-6.7 7.7Z" fill="currentColor" /><path d="M12 17.4v5.2" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" /></svg>
+					</span>
+					<span class="font-display text-[1.0625rem] font-semibold tracking-tight">JK Glow</span>
+				</a>
+				<p class="measure-tight mt-4 text-sm leading-relaxed text-fg-muted">
+					Relier la beauté coréenne aux marchés africains.				</p>
+				<div class="mt-5 flex items-center gap-2 text-sm text-fg-muted">
+					<span class="pulse-dot glow-breathe" aria-hidden="true"></span>
+					Accepting new partners				</div>
+			</div>
+
+			<div>
+				<h2 class="text-xs font-semibold uppercase tracking-[0.16em] text-fg-subtle">Explorer</h2>
+				<ul class="mt-4 space-y-2.5 text-sm">
+											<li><a href="index.html" class="link">Accueil</a></li>
+											<li><a href="a-propos.html" class="link">À propos</a></li>
+											<li><a href="index.html#brands" class="link">Nos marques</a></li>
+											<li><a href="index.html#for-professionals" class="link">Pour les pros</a></li>
+											<li><a href="index.html#for-brands" class="link">Pour les marques</a></li>
+											<li><a href="contact.html" class="link">Contact</a></li>
+									</ul>
+			</div>
+
+			<div>
+				<h2 class="text-xs font-semibold uppercase tracking-[0.16em] text-fg-subtle">Partenariat</h2>
+				<ul class="mt-4 space-y-2.5 text-sm">
+											<li><a href="contact.html" class="link">Devenir revendeur</a></li>
+											<li><a href="contact.html" class="link">Achat B2B</a></li>
+											<li><a href="contact.html" class="link">Implantation de marque coréenne</a></li>
+										<li><a href="contact.html" class="link">Nous contacter</a></li>
+				</ul>
+			</div>
+
+			<div>
+				<h2 class="text-xs font-semibold uppercase tracking-[0.16em] text-fg-subtle">Contact</h2>
+				<ul class="mt-4 space-y-2.5 text-sm">
+					<li><a href="mailto:hello@jkglow.com" class="link">hello@jkglow.com</a></li>
+					<li><a href="https://wa.me/261000000000" class="link" target="_blank" rel="noopener noreferrer">+261 00 00 0000</a></li>
+					<li><a href="https://instagram.com/jkglow" class="link" target="_blank" rel="noopener noreferrer">Instagram</a></li>
+					<li><span class="text-fg-muted">Antananarivo, Madagascar</span></li>
+				</ul>
+			</div>
+		</div>
+
+		<div class="mt-14 flex flex-col items-center justify-between gap-4 border-t border-line pt-7 text-sm text-fg-subtle sm:flex-row">
+			<p>
+				&copy; 2026 JK Glow.
+				Tous droits réservés.			</p>
+			<ul class="flex flex-wrap items-center justify-center gap-x-5 gap-y-2">
+				<li><a href="mentions-legales.html" class="link">Mentions légales</a></li>
+				<li><a href="politique-de-confidentialite.html" class="link">Politique de confidentialité</a></li>
+				<li><a href="../index.html" hreflang="en" class="link">English</a></li>
+			</ul>
+		</div>
+	</div>
+</footer>
+
+</body>
+</html>

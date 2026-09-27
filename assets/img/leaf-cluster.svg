@@ -1,0 +1,56 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 400" fill="none" aria-hidden="true">
+  <defs>
+    <linearGradient id="lgA" x1="0.1" y1="0" x2="0.9" y2="1">
+      <stop offset="0" stop-color="#C2D6EE"/>
+      <stop offset=".55" stop-color="#4473BF"/>
+      <stop offset="1" stop-color="#26355D"/>
+    </linearGradient>
+    <linearGradient id="lgB" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#EFF5FB"/>
+      <stop offset="1" stop-color="#4473BF"/>
+    </linearGradient>
+    <radialGradient id="halo" cx=".5" cy=".45" r=".55">
+      <stop offset="0" stop-color="#4473BF" stop-opacity=".34"/>
+      <stop offset="1" stop-color="#4473BF" stop-opacity="0"/>
+    </radialGradient>
+    <g id="leafA">
+      <path d="M60 84c-19.4-3.2-31.8-18.1-29.4-34.4C32.8 34 46 23.2 60 23.2S87.2 34 89.4 49.6C91.8 65.9 79.4 80.8 60 84Z" fill="url(#lgA)"/>
+      <path d="M60 84v26" stroke="#6793D2" stroke-width="4" stroke-linecap="round"/>
+      <g stroke="#0B1524" stroke-opacity=".32" stroke-width="2" stroke-linecap="round">
+        <path d="M60 80c-7-8.6-10.4-19.4-10.6-30.2"/>
+        <path d="M60 80c7-8.6 10.4-19.4 10.6-30.2"/>
+        <path d="M60 80c-2.4-10-2.6-21.4 0-32.4"/>
+      </g>
+    </g>
+    <g id="leafB">
+      <path d="M60 84c-19.4-3.2-31.8-18.1-29.4-34.4C32.8 34 46 23.2 60 23.2S87.2 34 89.4 49.6C91.8 65.9 79.4 80.8 60 84Z" fill="url(#lgB)"/>
+      <path d="M60 84v26" stroke="#4473BF" stroke-width="4" stroke-linecap="round"/>
+      <g stroke="#26355D" stroke-opacity=".3" stroke-width="2" stroke-linecap="round">
+        <path d="M60 80c-7-8.6-10.4-19.4-10.6-30.2"/>
+        <path d="M60 80c7-8.6 10.4-19.4 10.6-30.2"/>
+        <path d="M60 80c-2.4-10-2.6-21.4 0-32.4"/>
+      </g>
+    </g>
+  </defs>
+
+  <circle cx="200" cy="195" r="185" fill="url(#halo)"/>
+  <circle cx="200" cy="195" r="150" stroke="#4473BF" stroke-opacity=".22" stroke-width="1.5"/>
+  <circle cx="200" cy="195" r="112" stroke="#4473BF" stroke-opacity=".14" stroke-width="1.5" stroke-dasharray="4 9"/>
+
+  <g opacity=".5" transform="translate(96 214) rotate(-34) scale(.62)">
+    <use href="#leafB"/>
+  </g>
+  <g opacity=".45" transform="translate(268 206) rotate(30) scale(.58)">
+    <use href="#leafB"/>
+  </g>
+  <g transform="translate(146 128) scale(1.02)">
+    <use href="#leafA"/>
+  </g>
+
+  <g stroke="#6793D2" stroke-opacity=".55" stroke-width="2" stroke-linecap="round" fill="none">
+    <circle cx="318" cy="96" r="4.5"/>
+    <circle cx="82" cy="112" r="3.5"/>
+    <circle cx="336" cy="300" r="3"/>
+    <circle cx="70" cy="292" r="4"/>
+  </g>
+</svg>

@@ -1,0 +1,25 @@
+{
+  "name": "jkglow",
+  "version": "1.0.0",
+  "private": true,
+  "description": "JK Glow — K-Beauty distribution in Madagascar. Static site, HTML + Tailwind, with a small progressive-enhancement JS layer.",
+  "scripts": {
+    "build": "tailwindcss -i src/input.css -o assets/css/app.css --minify",
+    "build:assets": "node scripts/generate-assets.mjs",
+    "generate:media": "node scripts/generate-media.mjs",
+    "apply:motion": "node scripts/apply-motion.mjs",
+    "apply:theme": "node scripts/add-theme-script.mjs",
+    "apply:extras": "node scripts/apply-extras.mjs",
+    "test": "node scripts/validate.mjs",
+    "smoke": "node scripts/smoke.mjs",
+    "dev": "tailwindcss -i src/input.css -o assets/css/app.css --watch",
+    "serve": "npx --yes serve . -l 4173"
+  },
+  "devDependencies": {
+    "@tailwindcss/cli": "^4.3.3",
+    "@tailwindcss/typography": "^0.5.20",
+    "ffmpeg-static": "^5.3.0",
+    "sharp": "^0.35.4",
+    "tailwindcss": "^4.3.3"
+  }
+}
