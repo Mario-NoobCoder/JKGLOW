@@ -26,6 +26,14 @@
 	<link rel="apple-touch-icon" href="assets/img/apple-touch-icon.png" />
 	
 </head><body class="bg-bg text-fg antialiased">
+<div class="page-depth" aria-hidden="true">
+	<span class="depth-wash depth-wash-a"></span>
+	<span class="depth-wash depth-wash-b"></span>
+	<span class="depth-rays"><i></i></span>
+	<span class="bokeh bokeh-a"></span>
+	<span class="bokeh bokeh-b"></span>
+	<span class="bokeh bokeh-c"></span>
+</div>
 <div class="pointer-events-none fixed bottom-5 right-5 z-50 hidden sm:block" aria-hidden="true">
 	<svg viewBox="0 0 44 44" class="h-11 w-11 -rotate-90">
 		<circle cx="22" cy="22" r="19" fill="none" stroke="currentColor" stroke-width="2" class="text-fg-subtle opacity-25" />
@@ -35,8 +43,7 @@
 
 <a
 	href="#main"
-	class="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-[100] focus:rounded-full focus:bg-brand focus:px-5 focus:py-2.5 focus:text-sm focus:font-semibold focus:text-brand-fg"
->Skip to content</a>
+	class="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-[100] focus:rounded-full focus:bg-brand focus:px-5 focus:py-2.5 focus:text-sm focus:font-semibold focus:text-brand-fg">Skip to content</a>
 
 <input type="checkbox" id="jkglow-theme" class="sr-only" />
 <input type="checkbox" id="jkglow-nav" class="peer sr-only" />
@@ -64,24 +71,20 @@
 						aria-current="page"					>Home</a>
 									<a
 						href="about.html"
-						class="nav-link"
-											>About Us</a>
+						class="nav-link">About Us</a>
 									<a
 						href="index.html#brands"
 						class="nav-link"
 						aria-current="page"					>Our Brands</a>
 									<a
 						href="index.html#for-professionals"
-						class="nav-link"
-											>For Professionals</a>
+						class="nav-link">For Professionals</a>
 									<a
 						href="index.html#for-brands"
-						class="nav-link"
-											>For Brands</a>
+						class="nav-link">For Brands</a>
 									<a
 						href="contact.html"
-						class="nav-link"
-											>Contact</a>
+						class="nav-link">Contact</a>
 							</nav>
 
 			<div class="flex items-center gap-2.5">
@@ -107,13 +110,12 @@
 						<svg class="flag" viewBox="0 0 24 16" width="22" height="15" aria-hidden="true" focusable="false"><rect width="8" height="16" fill="#002654"/><rect x="8" width="8" height="16" fill="#ffffff"/><rect x="16" width="8" height="16" fill="#ce1126"/></svg><span class="sr-only">Français</span></a>
 				</div>
 
-				<a href="contact.html" class="btn btn-primary btn-md hidden lg:inline-flex">
+				<a href="contact.html" class="btn btn-3d btn-primary btn-md hidden lg:inline-flex glint">
 					Become a Partner				</a>
 
 				<label
 					for="jkglow-nav"
-					class="grid h-10 w-10 cursor-pointer place-items-center rounded-full border border-line text-fg transition hover:border-line-strong peer-focus-visible:ring-2 peer-focus-visible:ring-brand lg:hidden"
-				>
+					class="grid h-10 w-10 cursor-pointer place-items-center rounded-full border border-line text-fg transition hover:border-line-strong peer-focus-visible:ring-2 peer-focus-visible:ring-brand lg:hidden">
 					<span class="sr-only">Open menu</span>
 					<svg viewBox="0 0 24 24" class="h-5 w-5" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path stroke-linecap="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" /></svg>
 				</label>
@@ -125,28 +127,22 @@
 		<div class="nav-drawer-panel wrap flex flex-col gap-1 py-6">
 							<a
 					href="index.html"
-					class="rounded-xl px-3 py-3 text-base font-medium text-fg"
-				>Home</a>
+					class="rounded-xl px-3 py-3 text-base font-medium text-fg">Home</a>
 							<a
 					href="about.html"
-					class="rounded-xl px-3 py-3 text-base font-medium text-fg-muted"
-				>About Us</a>
+					class="rounded-xl px-3 py-3 text-base font-medium text-fg-muted">About Us</a>
 							<a
 					href="index.html#brands"
-					class="rounded-xl px-3 py-3 text-base font-medium text-fg-muted"
-				>Our Brands</a>
+					class="rounded-xl px-3 py-3 text-base font-medium text-fg-muted">Our Brands</a>
 							<a
 					href="index.html#for-professionals"
-					class="rounded-xl px-3 py-3 text-base font-medium text-fg-muted"
-				>For Professionals</a>
+					class="rounded-xl px-3 py-3 text-base font-medium text-fg-muted">For Professionals</a>
 							<a
 					href="index.html#for-brands"
-					class="rounded-xl px-3 py-3 text-base font-medium text-fg-muted"
-				>For Brands</a>
+					class="rounded-xl px-3 py-3 text-base font-medium text-fg-muted">For Brands</a>
 							<a
 					href="contact.html"
-					class="rounded-xl px-3 py-3 text-base font-medium text-fg-muted"
-				>Contact</a>
+					class="rounded-xl px-3 py-3 text-base font-medium text-fg-muted">Contact</a>
 			
 			<div class="my-4 h-px bg-line"></div>
 
@@ -160,33 +156,66 @@
 				<span class="text-xs font-semibold uppercase tracking-[0.18em] text-fg-subtle">Language</span>
 			</div>
 
-			<a href="contact.html" class="btn btn-primary btn-lg mt-4 w-full">
+			<a href="contact.html" class="btn btn-3d btn-primary btn-lg mt-4 w-full glint">
 				Become a Partner			</a>
 		</div>
 	</div>
 </header>
 
 <main id="main">
-<section class="relative overflow-hidden bg-bg-subtle">
+<section class="relative isolate overflow-hidden bg-bg-subtle">
+	<div class="depth-stage" aria-hidden="true">
+		<span class="cream-blob cream-a"></span>
+<span class="cream-blob cream-b"></span>
+		<div class="starfield" aria-hidden="true">
+			<i style="left:16%;top:14%;--i:0;--peak:0.56;--twinkle-duration:4.7s"></i>
+			<i style="left:53%;top:75%;--i:1;--peak:0.73;--twinkle-duration:5.4s"></i>
+			<i class="big" style="left:90%;top:50%;--i:2;--peak:0.90;--twinkle-duration:6.1s"></i>
+			<i style="left:33%;top:25%;--i:3;--peak:0.62;--twinkle-duration:6.8s"></i>
+			<i style="left:70%;top:86%;--i:4;--peak:0.79;--twinkle-duration:7.5s"></i>
+			<i style="left:13%;top:61%;--i:5;--peak:0.96;--twinkle-duration:8.2s"></i>
+			<i style="left:50%;top:36%;--i:6;--peak:0.68;--twinkle-duration:4.9s"></i>
+			<i class="big" style="left:87%;top:11%;--i:7;--peak:0.85;--twinkle-duration:5.6s"></i>
+			<i style="left:30%;top:72%;--i:8;--peak:0.57;--twinkle-duration:6.3s"></i>
+			<i style="left:67%;top:47%;--i:9;--peak:0.74;--twinkle-duration:7.0s"></i>
+			<i style="left:10%;top:22%;--i:10;--peak:0.91;--twinkle-duration:7.7s"></i>
+			<i style="left:47%;top:83%;--i:11;--peak:0.63;--twinkle-duration:8.4s"></i>
+			<i class="big" style="left:84%;top:58%;--i:12;--peak:0.80;--twinkle-duration:5.1s"></i>
+			<i style="left:27%;top:33%;--i:13;--peak:0.97;--twinkle-duration:5.8s"></i>
+		</div>
+		<span class="depth-floor"></span>
+		<span class="depth-sun"></span>
+		<span class="depth-horizon"></span>
+		<span class="depth-beam">
+			<i></i>
+			<i></i>
+		</span>
+		<span class="gyro">
+			<span class="gyro-ring gyro-ring-a"><i class="gyro-bead"></i></span>
+			<span class="gyro-ring gyro-ring-b"><i class="gyro-bead"></i></span>
+			<span class="gyro-ring gyro-ring-c"></span>
+			<span class="gyro-core"></span>
+		</span>
+	</div>
 	<div class="wash" aria-hidden="true"></div>
 	<div class="grid-lines pointer-events-none absolute inset-0 opacity-60 parallax-host" aria-hidden="true"></div>
 
 	<div class="wrap relative">
 		<div class="hero-shell grid items-center gap-16 lg:grid-cols-[1.05fr_0.95fr] lg:gap-20">
-			<div class="reveal">
+			<div class="perspective-3d reveal">
 				<p class="eyebrow">Official SKIN1004 Distribution Partner</p>
 
-				<h1 class="page-title text-mask enter-mask mt-7 font-display text-display-1 font-semibold">
-					K-Beauty distribution,<br class="hidden sm:block" />
-					built for <span class="text-gradient text-gradient-animated gradient-text-shift">Madagascar</span>
-				</h1>
+				<div class="title-stage">
+					<h1 class="page-title mt-7 font-display text-display-1 font-semibold text-3d"><span class="line-mask"><span class="line-rise" style="--i:0">K-Beauty distribution,</span></span>
+					<span class="line-mask"><span class="line-rise" style="--i:1">built for <span class="text-gradient text-gradient-animated gradient-text-shift">Madagascar</span></span></span></h1>
+				</div>
 
 				<p class="measure mt-7 text-lede text-fg-muted">We bring selected Korean beauty brands to Madagascar through professional distribution, retail partnerships and local market development.</p>
 
 				<div class="mt-10 flex flex-wrap items-center gap-3">
-					<a href="#brands" class="btn btn-primary btn-lg arrow-shift">
+					<a href="#brands" class="btn btn-3d btn-primary btn-lg arrow-shift glint">
 						Discover Our Brands						<svg viewBox="0 0 24 24" class="h-5 w-5" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12h15m0 0-6-6m6 6-6 6" /></svg>					</a>
-					<a href="contact.html" class="btn btn-secondary btn-lg">Become a Partner</a>
+					<a href="contact.html" class="btn btn-3d btn-secondary btn-lg glint">Become a Partner</a>
 				</div>
 
 				<ul class="mt-11 flex flex-wrap gap-x-6 gap-y-3 text-sm text-fg-muted">
@@ -233,9 +262,10 @@
 <section class="border-y border-line bg-bg py-8" aria-label="Channels we serve">
 	<div class="wrap">
 		<p class="text-center text-xs font-semibold uppercase tracking-[0.2em] text-fg-subtle">We supply</p>
-		<div class="relative mt-6 overflow-hidden [mask-image:linear-gradient(90deg,transparent,#000_10%,#000_90%,transparent)]">
+		<span class="swatch mt-4" aria-hidden="true"></span>
+		<div class="belt relative mt-6 overflow-hidden [mask-image:linear-gradient(90deg,transparent,#000_10%,#000_90%,transparent)]">
 			<div class="flex w-max animate-marquee items-center gap-3 hover:[animation-play-state:paused]">
-									<ul class="flex shrink-0 items-center gap-3 pr-3" >
+									<ul class="flex shrink-0 items-center gap-3 pr-3">
 													<li class="chip">Pharmacies &amp; Parapharmacies</li>
 													<li class="chip">Beauty Institutes &amp; Spas</li>
 													<li class="chip">Concept Stores</li>
@@ -263,20 +293,20 @@
 
 <section id="brands" class="scroll-mt-28 section-y">
 	<div class="wrap">
-		<div class="scroll-fade grid items-center gap-14 lg:grid-cols-[0.95fr_1.05fr] lg:gap-20" style="--i:1">
+		<div class="stack-3d scroll-fade grid items-center gap-14 lg:grid-cols-[0.95fr_1.05fr] lg:gap-20" style="--i:1">
 			<div>
 				<p class="eyebrow">Our Brands</p>
 				<h2 class="mt-6 font-display text-display-2 font-semibold">Selected Korean beauty for the Malagasy market</h2>
 				<p class="measure mt-6 text-fg-muted">SKIN1004 is known for high-purity Centella Asiatica formulations from Madagascar. We distribute SKIN1004 to pharmacies, beauty professionals and selected retailers in Madagascar.</p>
 				<div class="mt-9 flex flex-wrap gap-3">
-					<a href="#for-professionals" class="btn btn-primary btn-md">Order SKIN1004</a>
-					<a href="contact.html" class="btn btn-secondary btn-md">Find a Retailer</a>
+					<a href="#for-professionals" class="btn btn-3d btn-primary btn-md glint">Order SKIN1004</a>
+					<a href="contact.html" class="btn btn-3d btn-secondary btn-md glint">Find a Retailer</a>
 				</div>
 				<p class="measure-tight mt-9 border-l-2 border-line-strong pl-4 text-xs leading-relaxed text-fg-subtle">JK Glow is the official distributor of SKIN1004 in Madagascar. JK Glow is independent and not part of SKIN1004.</p>
 			</div>
 
 			<div class="scroll-fade-late" style="--i:2">
-				<div class="card card-hover hover-lift overflow-hidden p-8 sm:p-10">
+				<div class="card card-hover lift-3d overflow-hidden p-8 sm:p-10">
 					<div class="flex items-center gap-4">
 						<span class="grid h-16 w-16 place-items-center rounded-2xl bg-ink-900 text-white dark:bg-white dark:text-ink-900" aria-hidden="true">
 							<svg viewBox="0 0 24 24" class="h-8 w-8" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M12 17.4c-4.4-.7-7.2-4-6.7-7.7C5.9 6 8.3 3.4 12 3.4s6.1 2.6 6.7 6.3c.5 3.7-2.3 7-6.7 7.7Z" fill="currentColor" /><path d="M12 17.4v5.2" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" /></svg>						</span>
@@ -317,31 +347,31 @@
 
 <section class="bg-bg-subtle section-y">
 	<div class="wrap">
-		<div class="scroll-fade measure" style="--i:3">
+		<div class="stack-3d scroll-fade measure" style="--i:3">
 			<p class="eyebrow">Why JK Glow</p>
 			<h2 class="mt-6 font-display text-display-2 font-semibold">A distributor built on product quality, not promises</h2>
 		</div>
 
 		<div class="mt-14 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
-							<article class="card card-hover hover-lift reveal p-7" style="--reveal-delay:0ms">
+							<article class="card card-hover lift-3d reveal p-7" style="--reveal-delay:0ms">
 					<span class="grid h-11 w-11 place-items-center rounded-xl bg-azure-100 text-azure-700 dark:bg-azure-900/60 dark:text-azure-200" aria-hidden="true">
 						<svg viewBox="0 0 24 24" class="h-5 w-5" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75 11.25 15 15 9.75M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" /></svg>					</span>
 					<h3 class="mt-6 font-semibold">Korean Beauty Expertise</h3>
 					<p class="mt-2.5 text-sm leading-relaxed text-fg-muted">Official SKIN1004 Distribution Partner.</p>
 				</article>
-							<article class="card card-hover hover-lift reveal p-7" style="--reveal-delay:80ms">
+							<article class="card card-hover lift-3d reveal p-7" style="--reveal-delay:80ms">
 					<span class="grid h-11 w-11 place-items-center rounded-xl bg-azure-100 text-azure-700 dark:bg-azure-900/60 dark:text-azure-200" aria-hidden="true">
 						<svg viewBox="0 0 24 24" class="h-5 w-5" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M12 21a9 9 0 1 0 0-18 9 9 0 0 0 0 18Z" /><path stroke-linecap="round" stroke-linejoin="round" d="M3.6 9h16.8M3.6 15h16.8M12 3a15 15 0 0 1 0 18 15 15 0 0 1 0-18Z" /></svg>					</span>
 					<h3 class="mt-6 font-semibold">Local Market Knowledge</h3>
 					<p class="mt-2.5 text-sm leading-relaxed text-fg-muted">Based in Madagascar with a deep understanding of the local beauty market.</p>
 				</article>
-							<article class="card card-hover hover-lift reveal p-7" style="--reveal-delay:160ms">
+							<article class="card card-hover lift-3d reveal p-7" style="--reveal-delay:160ms">
 					<span class="grid h-11 w-11 place-items-center rounded-xl bg-azure-100 text-azure-700 dark:bg-azure-900/60 dark:text-azure-200" aria-hidden="true">
 						<svg viewBox="0 0 24 24" class="h-5 w-5" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M18 18.72a9.09 9.09 0 0 0 3.74-6.94 3 3 0 0 0-3.02-3.02 9.06 9.06 0 0 0-1.6.24 5.1 5.1 0 0 0-4.9-4.9c-.54-.13-1.1-.2-1.6-.24a3 3 0 0 0-3.02 3.02 9.09 9.09 0 0 0 3.74 6.94 9.06 9.06 0 0 0 1.5.47 9.06 9.06 0 0 0 1.6-.24 5.1 5.1 0 0 0 4.9 4.9c.54.13 1.1.2 1.6.24a9.06 9.06 0 0 0 1.5-.47Z" /></svg>					</span>
 					<h3 class="mt-6 font-semibold">B2B Network</h3>
 					<p class="mt-2.5 text-sm leading-relaxed text-fg-muted">Pharmacies, beauty professionals, retailers and specialized stores.</p>
 				</article>
-							<article class="card card-hover hover-lift reveal p-7" style="--reveal-delay:240ms">
+							<article class="card card-hover lift-3d reveal p-7" style="--reveal-delay:240ms">
 					<span class="grid h-11 w-11 place-items-center rounded-xl bg-azure-100 text-azure-700 dark:bg-azure-900/60 dark:text-azure-200" aria-hidden="true">
 						<svg viewBox="0 0 24 24" class="h-5 w-5" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M2.25 18 9 11.25l4.5 4.5L21.75 7.5M15.75 7.5h6v6" /></svg>					</span>
 					<h3 class="mt-6 font-semibold">Brand Development</h3>
@@ -354,7 +384,7 @@
 <section id="for-professionals" class="scroll-mt-28 section-y">
 	<div class="wrap">
 		<div class="grid items-start gap-14 lg:grid-cols-2 lg:gap-20 stagger-children">
-			<div class="scroll-fade" style="--i:4">
+			<div class="stack-3d scroll-fade" style="--i:4">
 				<p class="eyebrow">For Professionals</p>
 				<h2 class="mt-6 font-display text-display-2 font-semibold">Bring K-Beauty to your customers</h2>
 				<p class="measure mt-6 text-fg-muted">JK Glow partners with pharmacies, beauty institutes, concept stores, retailers and other professionals looking to offer selected Korean beauty brands to their customers.</p>
@@ -371,11 +401,11 @@
 						</li>
 									</ul>
 
-				<a href="contact.html" class="btn btn-primary btn-lg mt-11">Become a JK Glow Partner</a>
+				<a href="contact.html" class="btn btn-3d btn-primary btn-lg mt-11 glint">Become a JK Glow Partner</a>
 			</div>
 
 			<div class="scroll-fade-late" style="--i:5">
-				<div class="card card-hover hover-lift p-8 sm:p-10">
+				<div class="card card-hover lift-3d p-8 sm:p-10">
 					<h3 class="text-xs font-semibold uppercase tracking-[0.18em] text-fg-subtle">Who we work with</h3>
 					<ul class="mt-7 grid gap-3 sm:grid-cols-2">
 													<li class="rounded-xl border border-line bg-surface-2 px-4 py-3.5 text-sm font-medium">Pharmacies &amp; Parapharmacies</li>
@@ -396,27 +426,27 @@
 <section id="for-brands" class="scroll-mt-28 bg-bg-subtle section-y">
 	<div class="wrap">
 		<div class="grid items-start gap-14 lg:grid-cols-2 lg:gap-20">
-			<div class="scroll-fade lg:order-2 lg:pl-4" style="--i:6">
+			<div class="stack-3d scroll-fade lg:order-2 lg:pl-4" style="--i:6">
 				<p class="eyebrow">For Brands</p>
 				<h2 class="mt-6 font-display text-display-2 font-semibold">A Korean beauty brand looking to enter Madagascar?</h2>
 				<p class="measure mt-6 text-fg-muted">JK Glow supports selected Korean beauty brands in developing their presence in Madagascar through local market knowledge, distribution and commercial development.</p>
-				<a href="contact.html" class="btn btn-secondary btn-lg mt-10">Let’s Explore a Partnership</a>
+				<a href="contact.html" class="btn btn-3d btn-secondary btn-lg mt-10 glint">Let’s Explore a Partnership</a>
 			</div>
 
 			<div class="grid gap-4 sm:grid-cols-2 lg:order-1 scrub-lift">
-									<article class="card card-hover hover-lift reveal p-6" style="--reveal-delay:0ms">
+									<article class="card card-hover lift-3d reveal p-6" style="--reveal-delay:0ms">
 						<h3 class="font-semibold">Market Entry</h3>
 						<p class="mt-2 text-sm leading-relaxed text-fg-muted">Local market insights and positioning.</p>
 					</article>
-									<article class="card card-hover hover-lift reveal p-6" style="--reveal-delay:80ms">
+									<article class="card card-hover lift-3d reveal p-6" style="--reveal-delay:80ms">
 						<h3 class="font-semibold">Distribution</h3>
 						<p class="mt-2 text-sm leading-relaxed text-fg-muted">Import, wholesale and retail distribution.</p>
 					</article>
-									<article class="card card-hover hover-lift reveal p-6" style="--reveal-delay:160ms">
+									<article class="card card-hover lift-3d reveal p-6" style="--reveal-delay:160ms">
 						<h3 class="font-semibold">Business Development</h3>
 						<p class="mt-2 text-sm leading-relaxed text-fg-muted">Prospecting and account development.</p>
 					</article>
-									<article class="card card-hover hover-lift reveal p-6" style="--reveal-delay:240ms">
+									<article class="card card-hover lift-3d reveal p-6" style="--reveal-delay:240ms">
 						<h3 class="font-semibold">Brand Activation</h3>
 						<p class="mt-2 text-sm leading-relaxed text-fg-muted">Local commercial and marketing support.</p>
 					</article>
@@ -428,15 +458,15 @@
 <section id="about" class="scroll-mt-28 section-y">
 	<div class="wrap">
 		<div class="grid items-center gap-14 lg:grid-cols-[1.1fr_0.9fr] lg:gap-20 stagger-children">
-			<div class="scroll-fade" style="--i:7">
+			<div class="stack-3d scroll-fade" style="--i:7">
 				<p class="eyebrow">Our Story</p>
 				<h2 class="mt-6 font-display text-display-2 font-semibold">Long-term partnerships, built step by step</h2>
 				<p class="measure mt-6 text-fg-muted">JK Glow is a Madagascar-based distributor focused on bringing selected Korean beauty brands to local professionals and retailers. We build long-term partnerships with brands and develop sustainable distribution networks.</p>
-				<a href="about.html" class="btn btn-secondary btn-lg mt-10">Discover Our Story</a>
+				<a href="about.html" class="btn btn-3d btn-secondary btn-lg mt-10 glint">Discover Our Story</a>
 			</div>
 
 			<ul class="scroll-fade-late grid gap-4" style="--i:0">
-									<li class="card card-hover hover-lift flex items-start gap-4 p-6">
+									<li class="card card-hover lift-3d flex items-start gap-4 p-6">
 						<span class="grid h-10 w-10 shrink-0 place-items-center rounded-lg bg-azure-100 text-azure-700 dark:bg-azure-900/60 dark:text-azure-200" aria-hidden="true">
 							<svg viewBox="0 0 24 24" class="h-5 w-5" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M12 21a9 9 0 1 0 0-18 9 9 0 0 0 0 18Z" /><path stroke-linecap="round" stroke-linejoin="round" d="M12 7v5l3 2" /></svg>						</span>
 						<div>
@@ -444,7 +474,7 @@
 							<p class="mt-1 text-sm text-fg-muted">Local team, local market knowledge.</p>
 						</div>
 					</li>
-									<li class="card card-hover hover-lift flex items-start gap-4 p-6">
+									<li class="card card-hover lift-3d flex items-start gap-4 p-6">
 						<span class="grid h-10 w-10 shrink-0 place-items-center rounded-lg bg-azure-100 text-azure-700 dark:bg-azure-900/60 dark:text-azure-200" aria-hidden="true">
 							<svg viewBox="0 0 24 24" class="h-5 w-5" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M16.5 10.5V6.75a4.5 4.5 0 1 0-9 0v3.75m-.75 11.25h10.5a2.25 2.25 0 0 0 2.25-2.25v-6.75a2.25 2.25 0 0 0-2.25-2.25H6.75a2.25 2.25 0 0 0-2.25 2.25v6.75a2.25 2.25 0 0 0 2.25 2.25Z" /></svg>						</span>
 						<div>
@@ -452,7 +482,7 @@
 							<p class="mt-1 text-sm text-fg-muted">Working directly with Korean beauty brands.</p>
 						</div>
 					</li>
-									<li class="card card-hover hover-lift flex items-start gap-4 p-6">
+									<li class="card card-hover lift-3d flex items-start gap-4 p-6">
 						<span class="grid h-10 w-10 shrink-0 place-items-center rounded-lg bg-azure-100 text-azure-700 dark:bg-azure-900/60 dark:text-azure-200" aria-hidden="true">
 							<svg viewBox="0 0 24 24" class="h-5 w-5" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M2.25 18 9 11.25l4.5 4.5L21.75 7.5M15.75 7.5h6v6" /></svg>						</span>
 						<div>
@@ -465,8 +495,20 @@
 	</div>
 </section>
 
-
 <section class="relative isolate overflow-hidden bg-ink-950 text-white">
+	<span class="fold-edge" aria-hidden="true"></span>
+		<div class="starfield" aria-hidden="true">
+		<i style="left:68%;top:42%;--i:0;--peak:0.60;--twinkle-duration:5.1s"></i>
+		<i style="left:11%;top:17%;--i:1;--peak:0.77;--twinkle-duration:5.8s"></i>
+		<i class="big" style="left:48%;top:78%;--i:2;--peak:0.94;--twinkle-duration:6.5s"></i>
+		<i style="left:85%;top:53%;--i:3;--peak:0.66;--twinkle-duration:7.2s"></i>
+		<i style="left:28%;top:28%;--i:4;--peak:0.83;--twinkle-duration:7.9s"></i>
+		<i style="left:65%;top:89%;--i:5;--peak:0.55;--twinkle-duration:4.6s"></i>
+		<i style="left:8%;top:64%;--i:6;--peak:0.72;--twinkle-duration:5.3s"></i>
+		<i class="big" style="left:45%;top:39%;--i:7;--peak:0.89;--twinkle-duration:6.0s"></i>
+		<i style="left:82%;top:14%;--i:8;--peak:0.61;--twinkle-duration:6.7s"></i>
+		<i style="left:25%;top:75%;--i:9;--peak:0.78;--twinkle-duration:7.4s"></i>
+	</div>
 	<div class="ambient" aria-hidden="true">
 	<span class="orb orb-a blob parallax-drift"></span>
 	<span class="orb orb-b blob parallax-drift"></span>
@@ -497,14 +539,13 @@
 		<h2 class="reveal-up mx-auto mt-6 max-w-4xl font-display text-display-2 font-semibold text-white" style="--i:1">K-Beauty, presented the way it should be</h2>
 		<p class="measure reveal-clip-up mx-auto mt-6 text-lede text-ink-200" style="--i:2">A short look at the products, the packaging and the care rituals we bring into Madagascar. Everything you see is our own range, prepared for local distribution.</p>
 		<div class="reveal-up mt-10 flex flex-wrap items-center justify-center gap-3" style="--i:3">
-			<a href="#brands" class="btn btn-inverse btn-lg">Explore the range</a>
-			<a href="contact.html" class="btn btn-outline-inverse btn-lg">Talk to us</a>
+			<a href="#brands" class="btn btn-3d btn-inverse btn-lg glint">Explore the range</a>
+			<a href="contact.html" class="btn btn-3d btn-outline-inverse btn-lg glint">Talk to us</a>
 		</div>
 	</div>
 
 	<div class="scroll-progress absolute inset-x-0 bottom-0 h-1 bg-azure-400" aria-hidden="true"></div>
 </section>
-
 
 <section class="section-y">
 	<div class="wrap">
@@ -513,8 +554,8 @@
 		<span class="scrub-track mt-5 block h-px w-24 bg-gradient-to-r from-accent to-transparent" style="--i:3" aria-hidden="true"></span>
 		<p class="measure reveal-clip-up mt-6 text-lede text-fg-muted" style="--i:2">Serums, creams and toners built to survive a warm, humid climate and a long supply chain. Each format arrives labelled, sealed and ready to sell.</p>
 
-		<div class="mt-14 grid gap-6 sm:grid-cols-2 lg:grid-cols-3 stagger-children">
-						<article class="card reveal-mask tilt glow-hover hover-lift-lg overflow-hidden" style="--i:0">
+		<div class="deck mt-14 grid gap-6 sm:grid-cols-2 lg:grid-cols-3 stagger-children">
+						<article class="card deck-item glow-hover" style="--i:0">
 				<div class="media-frame sweep-overlay aspect-4/3 depth-shallow reveal-iris">
 					<img
 						src="assets/img/showcase-serum.png"
@@ -524,6 +565,7 @@
 						loading="lazy"
 						decoding="async"
 					/>
+					<span class="studio-light" aria-hidden="true"></span>
 				</div>
 				<div class="p-6">
 					<h3 class="font-display text-xl font-semibold">Serums</h3>
@@ -531,7 +573,7 @@
 				</div>
 			</article>
 
-			<article class="card reveal-flip tilt glow-hover hover-lift-lg overflow-hidden" style="--i:1">
+			<article class="card deck-item glow-hover" style="--i:1">
 				<div class="media-frame sweep-overlay aspect-4/3 depth-deep">
 					<img
 						src="assets/img/showcase-cream.png"
@@ -541,6 +583,7 @@
 						loading="lazy"
 						decoding="async"
 					/>
+					<span class="studio-light" aria-hidden="true"></span>
 				</div>
 				<div class="p-6">
 					<h3 class="font-display text-xl font-semibold">Creams</h3>
@@ -548,7 +591,7 @@
 				</div>
 			</article>
 
-			<article class="card reveal-stretch tilt glow-hover hover-lift-lg overflow-hidden" style="--i:2">
+			<article class="card deck-item glow-hover" style="--i:2">
 				<div class="media-frame sweep-overlay aspect-4/3 depth-shallow">
 					<img
 						src="assets/img/showcase-toner.png"
@@ -558,6 +601,7 @@
 						loading="lazy"
 						decoding="async"
 					/>
+					<span class="studio-light" aria-hidden="true"></span>
 				</div>
 				<div class="p-6">
 					<h3 class="font-display text-xl font-semibold">Toners</h3>
@@ -568,7 +612,6 @@
 	</div>
 </section>
 
-
 <section class="relative isolate overflow-hidden bg-bg-subtle section-y">
 	<div class="drift-back pointer-events-none absolute inset-0 -z-10 opacity-25 parallax-host" aria-hidden="true">
 		<img src="assets/img/texture-wash.png" alt="" width="1600" height="900" loading="lazy" decoding="async" class="h-full w-full object-cover" />
@@ -576,8 +619,8 @@
 
 	<div class="wrap">
 		<div class="grid items-center gap-14 lg:grid-cols-2 lg:gap-20 stagger-children">
-			<div class="reveal-left" style="--i:1">
-				<div class="media-frame sweep-overlay border-spin overflow-hidden rounded-4xl shadow-lift reveal-curtain depth-deep">
+			<div class="stack-3d reveal-left" style="--i:1">
+				<div class="media-frame sweep-overlay border-spin overflow-hidden rounded-4xl shadow-lift reveal-curtain depth-deep dof-far">
 					<img
 						src="assets/img/ritual-flatlay.png"
 						alt="Serum, cream and toner bottles arranged together on a navy background"
@@ -586,10 +629,11 @@
 						loading="lazy"
 						decoding="async"
 					/>
+					<span class="studio-light" aria-hidden="true"></span>
 				</div>
 			</div>
 
-			<div class="reveal-right" style="--i:2">
+			<div class="stack-3d reveal-right" style="--i:2">
 				<p class="eyebrow">How we work</p>
 				<h2 class="mt-6 font-display text-display-2 font-semibold">Import, clear, and stock locally</h2>
 				<p class="measure mt-6 text-lede text-fg-muted">We handle the parts that make retail hard in Madagascar: sea freight, customs, local warehousing and a small, reliable stock held in Antananarivo.</p>
@@ -632,43 +676,42 @@
 	</div>
 </section>
 
-
 <section class="section-y">
 	<div class="wrap">
 		<div class="grid items-center gap-14 lg:grid-cols-[0.95fr_1.05fr] lg:gap-20 stagger-children">
-			<div class="reveal-left" style="--i:1">
+			<div class="stack-3d reveal-left" style="--i:1">
 				<p class="eyebrow">Coverage</p>
 				<h2 class="mt-6 font-display text-display-2 font-semibold">From Antananarivo to the highlands</h2>
 				<p class="measure mt-6 text-lede text-fg-muted">We supply pharmacies, beauty professionals and retailers across the island, with delivery arranged for Toamasina and the secondary cities.</p>
 
 				<dl class="mt-12 grid grid-cols-2 gap-x-6 gap-y-9">
-										<div class="reveal-pop">
+										<div class="perspective-3d reveal-pop">
 						<dt class="sr-only">Brands in distribution</dt>
-						<dd class="font-display text-4xl font-semibold text-accent">
+						<dd class="num-3d tile-3d font-display text-4xl font-semibold text-accent">
 							<span class="count-scroll" style="--target:12"></span>+
 							<span class="mt-2 block text-xs font-semibold uppercase tracking-[0.16em] text-fg-subtle">Brands in distribution</span>
 						</dd>
 					</div>
 
-					<div class="reveal-slide-in">
+					<div class="perspective-3d reveal-slide-in">
 						<dt class="sr-only">Active retail partners</dt>
-						<dd class="font-display text-4xl font-semibold text-accent">
+						<dd class="num-3d tile-3d font-display text-4xl font-semibold text-accent">
 							<span class="count-scroll" style="--target:40"></span>+
 							<span class="mt-2 block text-xs font-semibold uppercase tracking-[0.16em] text-fg-subtle">Active retail partners</span>
 						</dd>
 					</div>
 
-					<div class="reveal-pop">
+					<div class="perspective-3d reveal-pop">
 						<dt class="sr-only">Cities served directly</dt>
-						<dd class="font-display text-4xl font-semibold text-accent">
+						<dd class="num-3d tile-3d font-display text-4xl font-semibold text-accent">
 							<span class="count-scroll" style="--target:3"></span>
 							<span class="mt-2 block text-xs font-semibold uppercase tracking-[0.16em] text-fg-subtle">Cities served directly</span>
 						</dd>
 					</div>
 
-					<div class="reveal-slide-in">
+					<div class="perspective-3d reveal-slide-in">
 						<dt class="sr-only">Stock held locally</dt>
-						<dd class="font-display text-4xl font-semibold text-accent">
+						<dd class="num-3d tile-3d font-display text-4xl font-semibold text-accent">
 							<span class="count-scroll" style="--target:100"></span>%
 							<span class="mt-2 block text-xs font-semibold uppercase tracking-[0.16em] text-fg-subtle">Stock held locally</span>
 						</dd>
@@ -677,7 +720,7 @@
 			</div>
 
 			<div class="reveal-blur" style="--i:4">
-				<div class="media-frame sweep-overlay overflow-hidden rounded-4xl shadow-lift depth-shallow">
+				<div class="media-frame sweep-overlay overflow-hidden rounded-4xl shadow-lift depth-shallow dof-far">
 					<img
 						src="assets/img/map-madagascar.png"
 						alt="Outline of Madagascar with concentric rings marking delivery coverage"
@@ -686,6 +729,7 @@
 						loading="lazy"
 						decoding="async"
 					/>
+					<span class="studio-light" aria-hidden="true"></span>
 				</div>
 			</div>
 		</div>
@@ -695,6 +739,7 @@
 <section class="pb-24 sm:pb-28">
 	<div class="wrap">
 		<div class="reveal relative overflow-hidden rounded-4xl bg-ink-950 px-8 py-16 text-center shadow-panel sm:px-14 sm:py-20 dark:bg-ink-900">
+	<span class="fold-edge" aria-hidden="true"></span>
 			<div class="wash opacity-70" aria-hidden="true"></div>
 			<div class="grid-lines pointer-events-none absolute inset-0 opacity-30 parallax-host" aria-hidden="true"></div>
 			<div class="relative">
@@ -702,8 +747,8 @@
 					Let’s grow your K-Beauty assortment				</h2>
 				<p class="measure mx-auto mt-6 text-base leading-relaxed text-ink-300">Tell us what you sell and where you sell it. We will come back with the brands and terms that fit your channel.</p>
 				<div class="mt-10 flex flex-wrap items-center justify-center gap-3">
-					<a href="contact.html" class="btn btn-inverse btn-lg">Start a Conversation</a>
-					<a href="contact.html" class="btn btn-outline-inverse btn-lg">I’m a Brand</a>
+					<a href="contact.html" class="btn btn-3d btn-inverse btn-lg glint">Start a Conversation</a>
+					<a href="contact.html" class="btn btn-3d btn-outline-inverse btn-lg glint">I’m a Brand</a>
 				</div>
 			</div>
 		</div>

@@ -10,6 +10,7 @@
     "apply:motion": "node scripts/apply-motion.mjs",
     "apply:theme": "node scripts/add-theme-script.mjs",
     "apply:extras": "node scripts/apply-extras.mjs",
+    "apply:depth": "node scripts/apply-depth.mjs",
     "test": "node scripts/validate.mjs",
     "smoke": "node scripts/smoke.mjs",
     "dev": "tailwindcss -i src/input.css -o assets/css/app.css --watch",

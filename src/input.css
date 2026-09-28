@@ -10,30 +10,71 @@
  * Every page is a real document, so switching language or navigating
  * still loads a page — but the browser animates the swap instead of
  * flashing white. Pure CSS, no router, no client-side templating.
+ *
+ * The swap happens in depth: the page you are leaving recedes through
+ * the camera and turns slightly on its vertical axis while the new one
+ * arrives from behind it. The perspective travels inside each transform
+ * rather than sitting on a pseudo-element, so the effect does not depend
+ * on the shape of the view-transition tree.
  * ------------------------------------------------------------------ */
 @view-transition {
   navigation: auto;
 }
 
 ::view-transition-old(root) {
-  animation: 320ms var(--ease-out-expo) both vt-out;
+  animation: 380ms var(--ease-out-expo) both vt-out;
 }
 
 ::view-transition-new(root) {
-  animation: 480ms var(--ease-out-expo) both vt-in;
+  animation: 560ms var(--ease-out-expo) both vt-in;
 }
 
 @keyframes vt-out {
   to {
     opacity: 0;
-    transform: translate3d(-1.5rem, 0, 0);
+    transform: perspective(1600px) translate3d(-2.75rem, 0, -560px) rotateY(8deg);
   }
 }
 
 @keyframes vt-in {
   from {
     opacity: 0;
-    transform: translate3d(1.5rem, 0, 0);
+    transform: perspective(1600px) translate3d(2.75rem, 0, -560px) rotateY(-8deg);
+  }
+}
+
+/* The logo arrives on edge, then squares up to the page. */
+::view-transition-old(brand-mark) {
+  animation: 240ms var(--ease-out-expo) both vt-mark-out;
+}
+
+::view-transition-new(brand-mark) {
+  animation: 520ms var(--ease-spring) both vt-mark-in;
+}
+
+@keyframes vt-mark-out {
+  to {
+    opacity: 0;
+    transform: perspective(700px) rotateY(-88deg);
+  }
+}
+
+@keyframes vt-mark-in {
+  from {
+    opacity: 0;
+    transform: perspective(700px) rotateY(92deg);
+  }
+}
+
+/* A title that is not shared between pages rises out of the surface. */
+::view-transition-new(page-title) {
+  animation: 620ms var(--ease-out-expo) both vt-title-in;
+}
+
+@keyframes vt-title-in {
+  from {
+    opacity: 0;
+    transform: perspective(1400px) translate3d(0, 1.5rem, -260px) rotateX(-9deg);
   }
 }
 
@@ -52,7 +93,10 @@
 
 @media (prefers-reduced-motion: reduce) {
   ::view-transition-old(root),
-  ::view-transition-new(root) {
+  ::view-transition-new(root),
+  ::view-transition-old(brand-mark),
+  ::view-transition-new(brand-mark),
+  ::view-transition-new(page-title) {
     animation: none;
   }
 }
@@ -1203,8 +1247,10 @@ html:has(#jkglow-theme:checked) {
     transform: translate3d(-120%, 0, 0) skewX(-18deg);
   }
 
-  .btn-primary:hover::after,
-  .btn-inverse:hover::after {
+  /* Only for buttons that did not get the glint band: two sheens crossing at
+   * once is what makes a shine read as stutter rather than as light. */
+  .btn-primary:not(.glint):hover::after,
+  .btn-inverse:not(.glint):hover::after {
     animation: sheen-sweep 0.85s var(--ease-out-expo);
   }
 
@@ -1216,7 +1262,9 @@ html:has(#jkglow-theme:checked) {
 
   .btn-primary:hover {
     transform: translateY(-2px);
-    box-shadow: var(--shadow-lift);
+    box-shadow:
+      var(--shadow-lift),
+      0 0 2.5rem -0.6rem color-mix(in oklab, var(--accent) 40%, transparent);
   }
 
   .btn-primary:active {
@@ -2351,23 +2399,23 @@ html:has(#jkglow-theme:checked) {
 
       .parallax-slow {
         --py: 1.75rem;
-        animation-name: parallax-y;
+        animation: parallax-y linear both;
       }
 
       .parallax-mid {
         --py: 3.5rem;
-        animation-name: parallax-y;
+        animation: parallax-y linear both;
       }
 
       .parallax-fast {
         --py: 6rem;
-        animation-name: parallax-y;
+        animation: parallax-y linear both;
       }
 
       .parallax-drift {
         --px: 2rem;
         --py: 3rem;
-        animation-name: parallax-drift;
+        animation: parallax-drift linear both;
       }
 
       /*
@@ -2380,7 +2428,7 @@ html:has(#jkglow-theme:checked) {
       .media-frame > :is(img, video),
       .parallax-host > :is(img, video) {
         --py: 3.5rem;
-        animation-name: parallax-y;
+        animation: parallax-y linear both;
         animation-timeline: view();
         animation-range: cover;
       }
@@ -2392,7 +2440,7 @@ html:has(#jkglow-theme:checked) {
 
       .parallax-spin {
         --spin: 45deg;
-        animation-name: parallax-spin;
+        animation: parallax-spin linear both;
       }
 
       /* Scroll-scrubbed: position in the viewport drives the value directly. */
@@ -2405,20 +2453,20 @@ html:has(#jkglow-theme:checked) {
       }
 
       .scrub-rotate {
-        animation-name: scrub-rotate;
+        animation: scrub-rotate linear both;
       }
 
       .scrub-track {
         transform-origin: left center;
-        animation-name: scrub-track;
+        animation: scrub-track linear both;
       }
 
       .scrub-tighten {
-        animation-name: scrub-tighten;
+        animation: scrub-tighten linear both;
       }
 
       .scrub-lift {
-        animation-name: scrub-lift;
+        animation: scrub-lift linear both;
       }
 
       /* Clip-path entrances share the same view timeline as the reveals. */
@@ -2433,27 +2481,27 @@ html:has(#jkglow-theme:checked) {
       }
 
       .reveal-clip-up {
-        animation-name: reveal-clip-up;
+        animation: reveal-clip-up linear both;
       }
 
       .reveal-clip-right {
-        animation-name: reveal-clip-right;
+        animation: reveal-clip-right linear both;
       }
 
       .reveal-curtain {
-        animation-name: reveal-curtain;
+        animation: reveal-curtain linear both;
       }
 
       .reveal-iris {
-        animation-name: reveal-iris;
+        animation: reveal-iris linear both;
       }
 
       .reveal-pop {
-        animation-name: reveal-pop;
+        animation: reveal-pop linear both;
       }
 
       .reveal-slide-in {
-        animation-name: reveal-slide-in;
+        animation: reveal-slide-in linear both;
       }
 
       /*
@@ -2505,63 +2553,63 @@ html:has(#jkglow-theme:checked) {
       }
 
       .reveal-up {
-        animation-name: reveal-up;
+        animation: reveal-up linear both;
       }
 
       .reveal-down {
-        animation-name: reveal-down;
+        animation: reveal-down linear both;
       }
 
       .reveal-left {
-        animation-name: reveal-left;
+        animation: reveal-left linear both;
       }
 
       .reveal-right {
-        animation-name: reveal-right;
+        animation: reveal-right linear both;
       }
 
       .reveal-scale {
-        animation-name: reveal-scale;
+        animation: reveal-scale linear both;
       }
 
       .reveal-blur {
-        animation-name: reveal-blur;
+        animation: reveal-blur linear both;
       }
 
       .reveal-wipe {
-        animation-name: reveal-wipe;
+        animation: reveal-wipe linear both;
       }
 
       .reveal-wipe-up {
-        animation-name: reveal-wipe-up;
+        animation: reveal-wipe-up linear both;
       }
 
       .reveal-mask {
-        animation-name: reveal-mask;
+        animation: reveal-mask linear both;
       }
 
       .reveal-zoom-blur {
-        animation-name: reveal-zoom-blur;
+        animation: reveal-zoom-blur linear both;
       }
 
       .reveal-skew {
-        animation-name: reveal-skew;
+        animation: reveal-skew linear both;
       }
 
       .reveal-flip {
-        animation-name: reveal-flip;
+        animation: reveal-flip linear both;
       }
 
       .reveal-stretch {
-        animation-name: reveal-stretch;
+        animation: reveal-stretch linear both;
       }
 
       .image-settle {
-        animation-name: image-settle;
+        animation: image-settle linear both;
       }
 
       .stagger {
-        animation-name: reveal-up;
+        animation: reveal-up linear both;
       }
 
       .parallax-tight {
@@ -2686,6 +2734,1485 @@ html:has(#jkglow-theme:checked) {
       transition-duration: 0.01ms !important;
       scroll-behavior: auto !important;
     }
+  }
+}
+
+/* ================================================================== *
+ * Immersion — depth, perspective, 3D
+ *
+ * Everything below is compositor work: transforms, opacities, clip paths
+ * and a couple of static filters. Nothing here reflows, and every effect is
+ * opt-in through a class, so a page only pays for the depth it asks for.
+ *
+ * The keyframes sit at the top level on purpose. Tailwind keeps a `@theme`
+ * keyframe only when the `animation` shorthand names it, so a keyframe that
+ * is reached through `animation-name` alone is dropped from the build.
+ * ================================================================== */
+
+/* ---- the floor of a room, seen from above ---- */
+@keyframes floor-run {
+  to {
+    transform: rotateX(72deg) translate3d(0, var(--tile, 4.5rem), 0);
+  }
+}
+
+/* ---- an instrument turning inside its case ---- */
+@keyframes gyro-y {
+  from {
+    transform: rotateY(0deg);
+  }
+  to {
+    transform: rotateY(360deg);
+  }
+}
+
+@keyframes gyro-ring-a {
+  from {
+    transform: rotateX(74deg) rotateZ(0deg);
+  }
+  to {
+    transform: rotateX(74deg) rotateZ(360deg);
+  }
+}
+
+@keyframes gyro-ring-b {
+  from {
+    transform: rotateY(66deg) rotateZ(0deg);
+  }
+  to {
+    transform: rotateY(66deg) rotateZ(-360deg);
+  }
+}
+
+@keyframes gyro-ring-c {
+  from {
+    transform: rotateX(-56deg) rotateY(22deg) rotateZ(0deg);
+  }
+  to {
+    transform: rotateX(-56deg) rotateY(22deg) rotateZ(360deg);
+  }
+}
+
+@keyframes gyro-core {
+  0%,
+  100% {
+    opacity: 0.45;
+    transform: scale(0.82);
+  }
+  50% {
+    opacity: 0.95;
+    transform: scale(1.18);
+  }
+}
+
+@keyframes horizon-breathe {
+  0%,
+  100% {
+    opacity: 0.3;
+    transform: scaleX(0.88);
+  }
+  50% {
+    opacity: 0.72;
+    transform: scaleX(1.06);
+  }
+}
+
+@keyframes beam-sweep {
+  from {
+    transform: rotate(-7deg);
+  }
+  to {
+    transform: rotate(7deg);
+  }
+}
+
+@keyframes beam-turn {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* ---- the page itself, seen from two distances ---- */
+@keyframes depth-far {
+  from {
+    transform: translate3d(-2.5%, 7%, 0) scale(1.18);
+  }
+  to {
+    transform: translate3d(2.5%, -7%, 0) scale(1.18);
+  }
+}
+
+@keyframes depth-near {
+  from {
+    transform: translate3d(3.5%, -6%, 0) scale(1.14);
+  }
+  to {
+    transform: translate3d(-3.5%, 6%, 0) scale(1.14);
+  }
+}
+
+/* ---- a deck of cards fanning open as it arrives ---- */
+@keyframes fan-open {
+  from {
+    opacity: 0;
+    transform: rotateY(var(--fan, 20deg)) translate3d(0, 2.75rem, var(--z, -170px))
+      scale(0.88);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+/* ---- a block of copy settling onto the page plane ---- */
+@keyframes stack-settle {
+  from {
+    opacity: 0;
+    transform: translate3d(0, 3.5rem, -230px) rotateX(15deg);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+/* ---- the headline, floating clear of the page ---- */
+/* Ends on the resting transform of .title-stage, so the settle is invisible. */
+@keyframes title-settle {
+  from {
+    transform: translate3d(0, 0, 56px) rotateX(4deg);
+  }
+  to {
+    transform: translate3d(0, 0, 26px) rotateX(2deg);
+  }
+}
+
+@keyframes line-rise {
+  from {
+    opacity: 0;
+    transform: translate3d(0, 108%, -170px) rotateX(-44deg);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+/* ---- focus pulls: a layer resolves as it crosses the viewport ---- */
+@keyframes dof-pulley {
+  0% {
+    filter: blur(9px) saturate(0.85);
+  }
+  30%,
+  70% {
+    filter: blur(0) saturate(1);
+  }
+  100% {
+    filter: blur(7px) saturate(0.9);
+  }
+}
+
+/* ---- a sheet of light crossing the header ---- */
+@keyframes header-sheen {
+  from {
+    opacity: 0;
+    background-position: 160% 0;
+  }
+  to {
+    opacity: 1;
+    background-position: -60% 0;
+  }
+}
+
+@layer components {
+  /* ---------------- the room: floor, horizon, light ---------------- */
+
+  .depth-stage {
+    position: absolute;
+    inset: 0;
+    z-index: -20;
+    overflow: hidden;
+    pointer-events: none;
+  }
+
+  /*
+   * The floor is a plane tipped almost flat and translated along its own
+   * surface, so the grid appears to run away from the reader. It is drawn
+   * twice the height it needs and masked, which is what makes the loop
+   * seamless.
+   */
+  .depth-floor {
+    position: absolute;
+    left: -60%;
+    right: -60%;
+    bottom: -16%;
+    height: 156%;
+    --tile: 4.5rem;
+    transform: rotateX(72deg);
+    transform-origin: 50% 100%;
+    background-image: linear-gradient(
+        to right,
+        color-mix(in oklab, var(--accent) 32%, transparent) 1px,
+        transparent 1px
+      ),
+      linear-gradient(
+        to bottom,
+        color-mix(in oklab, var(--accent) 32%, transparent) 1px,
+        transparent 1px
+      );
+    background-size: var(--tile) var(--tile);
+    -webkit-mask-image: linear-gradient(
+      to top,
+      #000 2%,
+      rgb(0 0 0 / 0.34) 42%,
+      transparent 84%
+    );
+    mask-image: linear-gradient(
+      to top,
+      #000 2%,
+      rgb(0 0 0 / 0.34) 42%,
+      transparent 84%
+    );
+  }
+
+  .depth-horizon {
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 54%;
+    height: 1px;
+    background: linear-gradient(
+      90deg,
+      transparent,
+      color-mix(in oklab, var(--accent) 62%, transparent),
+      transparent
+    );
+  }
+
+  .depth-sun {
+    position: absolute;
+    left: 50%;
+    top: 54%;
+    width: 38rem;
+    height: 20rem;
+    translate: -50% -50%;
+    background: radial-gradient(
+      ellipse at center,
+      color-mix(in oklab, var(--accent) 40%, transparent),
+      transparent 70%
+    );
+    filter: blur(30px);
+  }
+
+  /* One wedge of light, breathing across the scene. */
+  .depth-beam {
+    position: absolute;
+    left: 50%;
+    top: -22%;
+    width: 130%;
+    height: 170%;
+    translate: -50% 0;
+    background: conic-gradient(
+      from 198deg at 50% 0%,
+      transparent 0deg,
+      color-mix(in oklab, var(--accent) 18%, transparent) 9deg,
+      transparent 24deg
+    );
+    -webkit-mask-image: linear-gradient(to bottom, #000, transparent 74%);
+    mask-image: linear-gradient(to bottom, #000, transparent 74%);
+  }
+
+  /* ---------------- the instrument ---------------- */
+
+  .gyro {
+    position: absolute;
+    right: -3rem;
+    top: 50%;
+    width: 34rem;
+    height: 34rem;
+    translate: 0 -50%;
+    perspective: 1200px;
+    transform-style: preserve-3d;
+  }
+
+  .gyro-ring {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    translate: -50% -50%;
+    border-radius: 50%;
+    border: 1px solid color-mix(in oklab, var(--accent) 24%, transparent);
+    transform-style: preserve-3d;
+  }
+
+  .gyro-ring-a {
+    width: 17rem;
+    height: 17rem;
+  }
+
+  .gyro-ring-b {
+    width: 25rem;
+    height: 25rem;
+    border-style: dashed;
+  }
+
+  .gyro-ring-c {
+    width: 33rem;
+    height: 33rem;
+    border-color: color-mix(in oklab, var(--brand) 18%, transparent);
+  }
+
+  .gyro-bead {
+    position: absolute;
+    left: 50%;
+    top: 0;
+    width: 0.4375rem;
+    height: 0.4375rem;
+    margin: -0.21875rem 0 0 -0.21875rem;
+    border-radius: 50%;
+    background-color: var(--accent);
+    box-shadow: 0 0 14px color-mix(in oklab, var(--accent) 65%, transparent);
+  }
+
+  .gyro-ring-a .gyro-bead {
+    --orbit-radius: 8.5rem;
+  }
+
+  .gyro-ring-b .gyro-bead {
+    --orbit-radius: 12.5rem;
+  }
+
+  .gyro-core {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    width: 4.5rem;
+    height: 4.5rem;
+    margin: -2.25rem 0 0 -2.25rem;
+    border-radius: 50%;
+    background: radial-gradient(
+      circle at 34% 28%,
+      var(--color-azure-300, #97b8e2),
+      var(--brand)
+    );
+  }
+
+  /* ---------------- depth behind the whole page ---------------- */
+
+  /*
+   * A fixed backdrop that only shows through the sections that do not paint
+   * their own background, which is exactly where flat text needs help.
+   */
+  .page-depth {
+    position: fixed;
+    inset: 0;
+    z-index: -1;
+    overflow: hidden;
+    pointer-events: none;
+  }
+
+  .depth-wash {
+    position: absolute;
+    width: 72vmax;
+    height: 72vmax;
+    border-radius: 50%;
+    filter: blur(84px);
+  }
+
+  .depth-wash-a {
+    top: -24vmax;
+    left: -20vmax;
+    background: radial-gradient(
+      circle,
+      color-mix(in oklab, var(--accent) 24%, transparent),
+      transparent 68%
+    );
+  }
+
+  .depth-wash-b {
+    right: -24vmax;
+    bottom: -32vmax;
+    background: radial-gradient(
+      circle,
+      color-mix(in oklab, var(--brand) 20%, transparent),
+      transparent 68%
+    );
+  }
+
+  .depth-rays > i {
+    position: absolute;
+    inset: 0;
+    display: block;
+    background: repeating-conic-gradient(
+      from 0deg at 50% 42%,
+      color-mix(in oklab, var(--accent) 8%, transparent) 0deg 2.5deg,
+      transparent 2.5deg 15deg
+    );
+    -webkit-mask-image: radial-gradient(
+      ellipse 60% 50% at 50% 40%,
+      #000,
+      transparent 74%
+    );
+    mask-image: radial-gradient(ellipse 60% 50% at 50% 40%, #000, transparent 74%);
+  }
+
+  /* ---------------- a deck of cards in real depth ---------------- */
+
+  .deck {
+    perspective: 1400px;
+    perspective-origin: 50% 42%;
+  }
+
+  .deck-item {
+    transform-style: preserve-3d;
+    border-radius: 2rem;
+  }
+
+  /*
+   * Two layers on two planes: the picture sits behind the text, so a hover
+   * pushes them apart instead of moving the card. `overflow: hidden` is what
+   * would flatten this, which is why the frame rounds itself instead.
+   */
+  .deck-item > * {
+    transition: transform 0.55s var(--ease-out-expo);
+  }
+
+  .deck-item > :first-child {
+    --z-plane: -26px;
+    border-radius: 1.9rem 1.9rem 0 0;
+    transform: translate3d(0, 0, var(--z-plane));
+  }
+
+  .deck-item > :last-child {
+    --z-plane: 24px;
+    transform: translate3d(0, 0, var(--z-plane));
+  }
+
+  .deck-item:hover > :first-child {
+    --z-plane: -4px;
+  }
+
+  .deck-item:hover > :last-child {
+    --z-plane: 62px;
+  }
+
+  /* The middle card of a three-up deck reads as the closest one. */
+  .deck-item:nth-child(1) {
+    --fan: 22deg;
+    --z: -150px;
+  }
+
+  .deck-item:nth-child(2) {
+    --fan: -22deg;
+    --z: -60px;
+  }
+
+  .deck-item:nth-child(3) {
+    --fan: 26deg;
+    --z: -210px;
+  }
+
+  .deck-item:nth-child(4) {
+    --fan: -26deg;
+    --z: -210px;
+  }
+
+  .card.card-hover.deck-item:hover {
+    box-shadow: var(--shadow-panel),
+      0 0 0 1px color-mix(in oklab, var(--accent) 34%, transparent);
+  }
+
+  /* ---------------- surfaces that lift in layers ---------------- */
+
+  .lift-3d {
+    transform-style: preserve-3d;
+    transition: transform 0.5s var(--ease-out-expo),
+      box-shadow 0.5s var(--ease-out-expo), border-color 0.5s var(--ease-out-expo);
+  }
+
+  .card.card-hover.lift-3d:hover {
+    transform: perspective(1100px) translate3d(0, -10px, 40px) rotateX(3deg);
+    box-shadow: var(--shadow-lift),
+      0 0 0 1px color-mix(in oklab, var(--accent) 28%, transparent);
+  }
+
+  /* Each child sits on its own plane, so the card opens as it is hovered. */
+  .lift-3d > * {
+    transition: transform 0.5s var(--ease-out-expo);
+  }
+
+  .card.card-hover.lift-3d:hover > :is(span, svg) {
+    transform: translate3d(0, -4px, 46px);
+  }
+
+  .card.card-hover.lift-3d:hover > :is(h2, h3) {
+    transform: translate3d(0, -2px, 30px);
+  }
+
+  .card.card-hover.lift-3d:hover > p {
+    transform: translate3d(0, 0, 16px);
+  }
+
+  /* Copy that arrives as a stack of planes rather than a flat block. */
+  .stack-3d {
+    perspective: 1100px;
+  }
+
+  /* A plane to look at: anything inside it gets a vanishing point. */
+  .perspective-3d {
+    perspective: 1250px;
+    perspective-origin: 50% 28%;
+  }
+
+  /* The headline, floating clear of the page. */
+  .title-stage {
+    position: relative;
+    transform: translate3d(0, 0, 26px) rotateX(2deg);
+    transform-origin: 50% 0%;
+  }
+
+  /*
+   * Each line of the headline rises out of its own mask. The padding is
+   * trimmed again with a negative margin so the mask does not crop the
+   * ascenders and descenders of the display face.
+   */
+  .line-mask {
+    display: block;
+    overflow: hidden;
+    padding-block: 0.06em 0.16em;
+    margin-block: -0.06em -0.16em;
+    perspective: 780px;
+    perspective-origin: 50% 100%;
+  }
+
+  .line-rise {
+    display: block;
+    animation: line-rise 1.1s var(--ease-out-expo) both;
+    animation-delay: calc(var(--i, 0) * 120ms + 160ms);
+  }
+
+  /* Embossed type: the shadow is tinted with the ink, so it reads in both
+     themes without a second palette. */
+  .text-3d {
+    text-shadow: 0 1px 0 color-mix(in oklab, currentColor 20%, transparent),
+      0 2px 0 color-mix(in oklab, currentColor 13%, transparent),
+      0 3px 2px color-mix(in oklab, currentColor 8%, transparent),
+      0 22px 46px -22px color-mix(in oklab, currentColor 45%, transparent);
+  }
+
+  .num-3d {
+    text-shadow: 0 1px 0 color-mix(in oklab, currentColor 26%, transparent),
+      0 2px 0 color-mix(in oklab, currentColor 16%, transparent),
+      0 4px 0 color-mix(in oklab, currentColor 8%, transparent),
+      0 18px 34px -18px color-mix(in oklab, currentColor 55%, transparent);
+  }
+
+  .tile-3d {
+    transition: transform 0.45s var(--ease-out-expo);
+  }
+
+  .tile-3d:hover {
+    transform: translate3d(0, -4px, 26px);
+  }
+
+  /* ---------------- controls with a press ---------------- */
+
+  .btn.btn-3d {
+    transform: perspective(760px) translate3d(0, 0, 0) rotateX(0deg);
+    transform-style: preserve-3d;
+    transition: transform 0.4s var(--ease-spring),
+      box-shadow 0.4s var(--ease-out-expo);
+  }
+
+  .btn.btn-3d:hover {
+    transform: perspective(760px) translate3d(0, -3px, 28px) rotateX(7deg);
+    box-shadow: 0 20px 34px -18px color-mix(in oklab, var(--brand) 62%, transparent);
+  }
+
+  .btn.btn-3d:active {
+    transform: perspective(760px) translate3d(0, 1px, 0) rotateX(-1deg);
+  }
+
+  .eyebrow {
+    transform-style: preserve-3d;
+    transition: transform 0.4s var(--ease-out-expo),
+      box-shadow 0.4s var(--ease-out-expo);
+  }
+
+  .eyebrow::before {
+    transform: translate3d(0, 0, 20px);
+  }
+
+  .eyebrow:hover {
+    transform: perspective(620px) translate3d(0, -2px, 18px) rotateX(6deg);
+    box-shadow: var(--shadow-lift);
+  }
+
+  .nav-link {
+    transition: color 0.2s, transform 0.35s var(--ease-out-expo);
+  }
+
+  .nav-link:hover,
+  .nav-link:focus-visible {
+    transform: perspective(560px) translate3d(0, -1px, 12px);
+  }
+
+  /* ---------------- belts of chips, waving in depth ---------------- */
+
+  .belt {
+    perspective: 900px;
+  }
+
+  .belt > *,
+  .belt :is(ul, ol) {
+    transform-style: preserve-3d;
+  }
+
+  /* Every chip rests on the same centre line: the belt waves because the
+   * chips travel and because one of them lifts, never because half of them
+   * sit higher than the other half. */
+  .belt .chip {
+    transition: transform 0.45s var(--ease-out-expo);
+  }
+
+  .belt .chip:hover {
+    transform: translate3d(0, -10px, 48px) scale(1.04);
+  }
+
+  .ticker-strip {
+    perspective: 700px;
+  }
+
+  .ticker-track {
+    transform-style: preserve-3d;
+  }
+
+  .ticker-set {
+    transform: translate3d(0, 0, -16px);
+    transition: transform 0.5s var(--ease-out-expo);
+  }
+
+  .ticker-strip:hover .ticker-set {
+    transform: translate3d(0, 0, 14px);
+  }
+
+  /* The belt runs on one centre line. Chips never wrap, never shrink and
+   * never inherit the browser's list indents, which is what used to leave
+   * some riding high and some riding low. */
+  .belt > div,
+  .belt ul,
+  .belt li {
+    align-items: center;
+  }
+
+  .belt ul {
+    margin-block: 0;
+    padding-inline: 0;
+  }
+
+  .belt li {
+    flex: 0 0 auto;
+    white-space: nowrap;
+  }
+
+  .ticker-track {
+    align-items: center;
+  }
+
+  /* ---------------- section furniture ---------------- */
+
+  /* A dark section that folds away from the reader. */
+  .fold-edge {
+    position: absolute;
+    inset-inline: -10%;
+    top: 0;
+    height: 48%;
+    z-index: -5;
+    pointer-events: none;
+    transform: perspective(780px) rotateX(58deg);
+    transform-origin: 50% 0%;
+    background: linear-gradient(
+      to bottom,
+      color-mix(in oklab, var(--accent) 26%, transparent),
+      transparent 76%
+    );
+    -webkit-mask-image: linear-gradient(to bottom, #000, transparent 70%);
+    mask-image: linear-gradient(to bottom, #000, transparent 70%);
+  }
+
+  .header-shell::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    pointer-events: none;
+    opacity: 0;
+    background: linear-gradient(
+      100deg,
+      transparent 34%,
+      color-mix(in oklab, var(--accent) 16%, transparent) 50%,
+      transparent 66%
+    );
+    background-size: 220% 100%;
+  }
+
+  /* ---------------- ambient loops ---------------- */
+
+  @media (prefers-reduced-motion: no-preference) {
+    .depth-floor {
+      animation: floor-run 3.6s linear infinite;
+    }
+
+    .depth-sun,
+    .depth-horizon {
+      animation: horizon-breathe 11s ease-in-out infinite;
+    }
+
+    .depth-beam {
+      animation: beam-sweep 15s ease-in-out infinite alternate;
+    }
+
+    .gyro {
+      animation: gyro-y 64s linear infinite;
+    }
+
+    .gyro-ring-a {
+      animation: gyro-ring-a 17s linear infinite;
+    }
+
+    .gyro-ring-b {
+      animation: gyro-ring-b 25s linear infinite;
+    }
+
+    .gyro-ring-c {
+      animation: gyro-ring-c 37s linear infinite;
+    }
+
+    .gyro-core {
+      animation: gyro-core 7s ease-in-out infinite;
+    }
+
+    .gyro-bead {
+      animation: orbit calc(var(--orbit-duration, 9s)) linear infinite;
+    }
+
+    .depth-rays > i {
+      animation: beam-turn 120s linear infinite;
+    }
+  }
+
+  /* ---------------- scroll-driven depth ---------------- */
+
+  @supports (animation-timeline: view()) {
+    @media (prefers-reduced-motion: no-preference) {
+      .deck-item {
+        animation: fan-open linear both;
+        animation-timeline: view();
+        animation-range: entry calc(4% + var(--i, 0) * 7%)
+          cover calc(30% + var(--i, 0) * 7%);
+      }
+
+      /* A card that springs forward is enough of a 3D cue on its own. */
+      .deck-item:hover {
+        animation-play-state: running;
+      }
+
+      .stack-3d > * {
+        animation: stack-settle linear both;
+        animation-timeline: view();
+        animation-range: entry calc(6% + var(--i, 0) * 8%)
+          cover calc(40% + var(--i, 0) * 8%);
+      }
+
+      .stack-3d > *:nth-child(1) { --i: 1; }
+      .stack-3d > *:nth-child(2) { --i: 2; }
+      .stack-3d > *:nth-child(3) { --i: 3; }
+      .stack-3d > *:nth-child(4) { --i: 4; }
+      .stack-3d > *:nth-child(5) { --i: 5; }
+      .stack-3d > *:nth-child(6) { --i: 6; }
+
+      .title-stage {
+        animation: title-settle linear both;
+        animation-timeline: view();
+        animation-range: cover;
+      }
+
+      .dof-far {
+        animation: dof-pulley linear both;
+        animation-timeline: view();
+        animation-range: cover;
+      }
+    }
+  }
+
+  @supports (animation-timeline: scroll()) {
+    @media (prefers-reduced-motion: no-preference) {
+      .depth-wash-a,
+      .depth-wash-b,
+      .depth-rays {
+        animation: depth-far linear both;
+        animation-timeline: scroll(root block);
+      }
+
+      .depth-wash-b,
+      .depth-rays {
+        animation-name: depth-near;
+      }
+
+      .header-shell::after {
+        animation: header-sheen linear both;
+        animation-timeline: scroll(root block);
+        animation-range: 0 160px;
+      }
+    }
+  }
+}
+
+/*
+ * The 3D above is decoration around content, so it is the first thing to go:
+ * the perspective is dropped (which flattens every plane) and the offsets
+ * that made the layers separate collapse to nothing.
+ */
+@media (prefers-reduced-motion: reduce) {
+  :is(
+      .deck,
+      .stack-3d,
+      .perspective-3d,
+      .title-stage,
+      .line-mask,
+      .btn-3d,
+      .lift-3d,
+      .deck-item,
+      .eyebrow,
+      .belt,
+      .ticker-strip
+    ) {
+    perspective: none !important;
+    transform-style: flat !important;
+  }
+
+  .deck-item,
+  .deck-item > *,
+  .lift-3d,
+  .lift-3d > *,
+  .stack-3d > *,
+  .title-stage,
+  .btn-3d,
+  .eyebrow,
+  .nav-link,
+  .chip,
+  .ticker-set,
+  .tile-3d {
+    animation: none !important;
+  }
+
+  .deck-item:hover > *,
+  .card.card-hover.lift-3d:hover > *,
+  .card.card-hover.lift-3d:hover,
+  .btn.btn-3d:hover,
+  .btn.btn-3d:active,
+  .eyebrow:hover,
+  .eyebrow::before,
+  .nav-link:hover,
+  .chip:hover,
+  .ticker-strip:hover .ticker-set,
+  .tile-3d:hover {
+    transform: none !important;
+  }
+
+  .depth-stage,
+  .page-depth {
+    display: none;
+  }
+
+  .fold-edge,
+  .header-shell::after,
+  .dof-far {
+    animation: none !important;
+  }
+}
+
+/* ================================================================== *
+ * Sparkle, glint and bokeh
+ *
+ * The depth layer gives the page rooms. This one lights them: stars that
+ * switch on and off out of step with each other, a sheen that crosses a
+ * surface when the pointer finds it, dust turning in the beam, and
+ * defocused discs drifting far behind the content.
+ *
+ * Nothing here touches layout. A star is opacity and scale, a sheen is one
+ * transformed band, the bokeh is transform only, so the whole set stays on
+ * the compositor. Every loop is behind `prefers-reduced-motion:
+ * no-preference`, and what remains when motion is off is a handful of
+ * static highlights rather than an empty box.
+ * ================================================================== */
+
+@keyframes twinkle {
+  0%,
+  100% {
+    opacity: 0.08;
+    transform: scale(0.55);
+  }
+  46% {
+    opacity: var(--peak, 0.9);
+    transform: scale(1);
+  }
+}
+
+/* The four-point spark: slower, drifting, and never fully dark. */
+@keyframes spark-wander {
+  0%,
+  100% {
+    opacity: 0.1;
+    transform: translate3d(0, 0.3rem, 0) scale(0.7) rotate(0deg);
+  }
+  50% {
+    opacity: var(--peak, 0.85);
+    transform: translate3d(0.2rem, -0.25rem, 24px) scale(1) rotate(22deg);
+  }
+}
+
+/* A band that crosses the surface, parked off to the left between passes. */
+@keyframes glint-glide {
+  0% {
+    transform: translate3d(-125%, 0, 0);
+    opacity: 0;
+  }
+  18% {
+    opacity: var(--glint, 0.5);
+  }
+  72% {
+    opacity: var(--glint, 0.5);
+  }
+  100% {
+    transform: translate3d(235%, 0, 0);
+    opacity: 0;
+  }
+}
+
+@keyframes glint-travel {
+  0% {
+    transform: translate3d(-45%, 0, 0) skewX(-16deg);
+    opacity: 0;
+  }
+  15%,
+  85% {
+    opacity: var(--glint, 0.55);
+  }
+  100% {
+    transform: translate3d(360%, 0, 0) skewX(-16deg);
+    opacity: 0;
+  }
+}
+
+@keyframes dust-climb {
+  from {
+    transform: translate3d(0, 0, 0);
+  }
+  to {
+    transform: translate3d(-1.5rem, -130%, 0);
+  }
+}
+
+@keyframes caustic-drift {
+  0%,
+  100% {
+    opacity: 0.28;
+    transform: translate3d(-3%, 0, 0) scale(1);
+  }
+  50% {
+    opacity: 0.6;
+    transform: translate3d(3%, -1.5%, 0) scale(1.14);
+  }
+}
+
+@keyframes core-bloom {
+  0% {
+    opacity: var(--peak, 0.7);
+    transform: scale(0.35);
+  }
+  70%,
+  100% {
+    opacity: 0;
+  }
+  100% {
+    transform: scale(2.8);
+  }
+}
+
+@keyframes prism-turn {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(1turn);
+  }
+}
+
+@keyframes shimmer-run {
+  0% {
+    background-position: 200% 0;
+    opacity: 0;
+  }
+  22% {
+    opacity: var(--glint, 0.55);
+  }
+  100% {
+    background-position: -130% 0;
+    opacity: 0;
+  }
+}
+
+@keyframes bokeh-drift {
+  0% {
+    transform: translate3d(0, 0, 0) scale(1);
+  }
+  50% {
+    transform: translate3d(3vmax, -2.5vmax, 0) scale(1.18);
+  }
+  100% {
+    transform: translate3d(-2.5vmax, 2vmax, 0) scale(0.92);
+  }
+}
+
+/* Gel, not a light: an organic shape that keeps its own outline and only
+ * turns, so the blob reads as a cream left on the surface. Transform only,
+ * so the shape never has to be repainted. */
+@keyframes cream-drift {
+  0% {
+    transform: translate3d(0, 0, 0) rotate(0deg) scale(1);
+  }
+  50% {
+    transform: translate3d(2.5vmax, -3vmax, 0) rotate(26deg) scale(1.14);
+  }
+  100% {
+    transform: translate3d(0, 0, 0) rotate(0deg) scale(1);
+  }
+}
+
+/* The swatch is a lipstick stroke: a colour bar that keeps moving the way
+ * a hand moves across a colour. */
+@keyframes swatch-drift {
+  0% {
+    background-position: 100% 0;
+    opacity: 0.7;
+  }
+  50% {
+    background-position: 0% 0;
+    opacity: 1;
+  }
+  100% {
+    background-position: 100% 0;
+    opacity: 0.7;
+  }
+}
+
+@layer components {
+  /* ---------------- a sky of small lights ---------------- */
+  .starfield {
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+    overflow: hidden;
+    pointer-events: none;
+  }
+
+  .starfield > i {
+    position: absolute;
+    width: 0.25rem;
+    height: 0.25rem;
+    border-radius: 999px;
+    background: radial-gradient(
+      circle,
+      color-mix(in oklab, #ffffff 92%, transparent) 0 36%,
+      color-mix(in oklab, var(--accent) 70%, transparent) 62%,
+      transparent 74%
+    );
+    box-shadow: 0 0 0.5rem color-mix(in oklab, var(--accent) 38%, transparent);
+    transform-origin: 50% 50%;
+  }
+
+  /* A cross of light, the way a lens catches a low sun. */
+  .starfield > i.big {
+    width: 1.4rem;
+    height: 1.4rem;
+    background:
+      linear-gradient(to right, transparent 47.5%, color-mix(in oklab, #ffffff 88%, transparent) 47.5% 52.5%, transparent 52.5%),
+      linear-gradient(to bottom, transparent 47.5%, color-mix(in oklab, #ffffff 88%, transparent) 47.5% 52.5%, transparent 52.5%),
+      radial-gradient(circle, #ffffff 0 10%, transparent 38%);
+    box-shadow: 0 0 0.9rem color-mix(in oklab, var(--accent) 55%, transparent);
+  }
+
+  /* ---------------- defocused discs, far behind ---------------- */
+  .bokeh {
+    position: absolute;
+    border-radius: 50%;
+    filter: blur(14px);
+    mix-blend-mode: screen;
+    opacity: var(--peak, 0.5);
+    /* A real out-of-focus point is a rim, not a disc: the edge stays lit. */
+    background: radial-gradient(
+      circle,
+      transparent 54%,
+      color-mix(in oklab, var(--accent) 30%, transparent) 76%,
+      color-mix(in oklab, var(--accent) 12%, transparent) 90%,
+      transparent 100%
+    );
+  }
+
+  .bokeh-a {
+    top: 6vh;
+    left: -6vw;
+    width: 16vmax;
+    height: 16vmax;
+  }
+
+  .bokeh-b {
+    top: 38vh;
+    right: -8vw;
+    width: 12vmax;
+    height: 12vmax;
+    --peak: 0.38;
+  }
+
+  .bokeh-c {
+    bottom: 4vh;
+    left: 22vw;
+    width: 8vmax;
+    height: 8vmax;
+    --peak: 0.3;
+  }
+
+  /* ---------------- gel, swatch and studio light ---------------- */
+
+  /* A cream left on the surface. Two shapes, two tempos, both far behind
+   * the content and both lit only by their own rim. */
+  .cream-blob {
+    position: absolute;
+    z-index: -1;
+    pointer-events: none;
+    border-radius: 62% 38% 44% 56% / 47% 55% 45% 53%;
+    filter: blur(46px);
+    mix-blend-mode: screen;
+    opacity: var(--peak, 0.32);
+  }
+
+  .cream-a {
+    top: 6%;
+    right: 3%;
+    width: 30vmax;
+    height: 26vmax;
+    background: radial-gradient(
+      circle at 34% 30%,
+      color-mix(in oklab, #7dd3fc 52%, transparent),
+      transparent 68%
+    );
+  }
+
+  .cream-b {
+    bottom: 2%;
+    left: 5%;
+    width: 26vmax;
+    height: 24vmax;
+    border-radius: 44% 56% 61% 39% / 55% 43% 57% 45%;
+    background: radial-gradient(
+      circle at 62% 66%,
+      color-mix(in oklab, #a78bfa 46%, transparent),
+      transparent 70%
+    );
+    --peak: 0.24;
+  }
+
+  /* A swatch: the colour bar a brand draws under a claim. */
+  .swatch {
+    display: block;
+    width: min(12rem, 34%);
+    height: 2px;
+    margin-inline: auto;
+    border-radius: 999px;
+    background: linear-gradient(
+      90deg,
+      transparent,
+      color-mix(in oklab, var(--accent) 70%, transparent) 18%,
+      color-mix(in oklab, #ffffff 70%, var(--accent)) 50%,
+      color-mix(in oklab, #a78bfa 60%, transparent) 82%,
+      transparent
+    );
+    background-size: 220% 100%;
+    background-position: 100% 0;
+  }
+
+  /* A product shot needs a softbox. One broad light comes up over the frame
+   * when the pointer arrives, so a bottle looks lit rather than printed. */
+  .studio-light {
+    position: absolute;
+    inset: 0;
+    z-index: 2;
+    pointer-events: none;
+    background: radial-gradient(
+      118% 88% at var(--light-x, 50%) 4%,
+      color-mix(in oklab, #ffffff 30%, transparent),
+      color-mix(in oklab, var(--accent) 14%, transparent) 40%,
+      transparent 70%
+    );
+    opacity: 0;
+    transition: opacity 0.75s var(--ease-out-expo);
+  }
+
+  .media-frame:hover .studio-light {
+    opacity: 1;
+  }
+
+  /* ---------------- a sheen that crosses a surface ---------------- */
+  /* A travelling band rather than a sliding background position, so the
+   * pass runs on the compositor and the edges stay soft at every frame. */
+  .glint {
+    position: relative;
+  }
+
+  .glint::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    width: var(--glint-width, 55%);
+    pointer-events: none;
+    background: linear-gradient(
+      90deg,
+      transparent,
+      color-mix(in oklab, #ffffff 55%, transparent) 44%,
+      color-mix(in oklab, var(--accent) 26%, transparent) 58%,
+      transparent
+    );
+    transform: translate3d(-125%, 0, 0);
+    opacity: 0;
+  }
+
+  /* ---------------- light on the floor and in the beam ---------------- */
+  .depth-floor::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    mix-blend-mode: screen;
+    background:
+      radial-gradient(48% 34% at 28% 32%, color-mix(in oklab, var(--accent) 22%, transparent), transparent 70%),
+      radial-gradient(42% 30% at 66% 56%, color-mix(in oklab, var(--brand) 20%, transparent), transparent 72%),
+      radial-gradient(30% 22% at 48% 74%, color-mix(in oklab, #ffffff 12%, transparent), transparent 74%);
+  }
+
+  .depth-beam > i {
+    position: absolute;
+    inset: 0 -10% -20%;
+    pointer-events: none;
+    opacity: 0.5;
+    background-image: radial-gradient(circle, color-mix(in oklab, #ffffff 70%, transparent) 0 1px, transparent 1.5px);
+    background-size: 7rem 9rem;
+    mask-image: linear-gradient(to top, transparent, #000 62%);
+  }
+
+  .depth-beam > i + i {
+    opacity: 0.3;
+    background-size: 11rem 14rem;
+    background-position: 3rem 4rem;
+  }
+
+  /* Rings leaving the core of the gyroscope, one after the other. */
+  .gyro-core::before,
+  .gyro-core::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border-radius: 50%;
+    border: 1px solid color-mix(in oklab, var(--accent) 40%, transparent);
+  }
+
+  /* ---------------- the logo splits its own colour ---------------- */
+  .brand-mark {
+    position: relative;
+  }
+
+  .brand-mark::after {
+    content: "";
+    position: absolute;
+    inset: -1px;
+    border-radius: inherit;
+    pointer-events: none;
+    mix-blend-mode: screen;
+    opacity: 0;
+    background: conic-gradient(
+      from 0deg,
+      color-mix(in oklab, #7dd3fc 45%, transparent),
+      transparent 26%,
+      color-mix(in oklab, #a78bfa 40%, transparent) 52%,
+      transparent 74%,
+      color-mix(in oklab, #7dd3fc 45%, transparent)
+    );
+    transition: opacity 0.45s var(--ease-out-expo);
+  }
+
+  /* ---------------- the headline catches the light once ---------------- */
+  .title-stage::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    background-image: linear-gradient(
+      100deg,
+      transparent 44%,
+      color-mix(in oklab, #ffffff 52%, transparent) 50%,
+      transparent 56%
+    );
+    background-size: 220% 100%;
+    background-repeat: no-repeat;
+    background-position: 210% 0;
+    opacity: 0;
+  }
+}
+
+/* Every loop in this section, and only where motion is welcome. */
+@media (prefers-reduced-motion: no-preference) {
+  .starfield > i {
+    animation: twinkle var(--twinkle-duration, 5.4s) ease-in-out infinite;
+    animation-delay: calc(var(--i, 0) * -0.63s);
+  }
+
+  .starfield > i.big {
+    animation: spark-wander var(--twinkle-duration, 8.2s) ease-in-out infinite;
+    animation-delay: calc(var(--i, 0) * -1.4s);
+  }
+
+  .bokeh {
+    animation: bokeh-drift var(--drift-duration, 64s) ease-in-out infinite alternate;
+  }
+
+  .bokeh-b {
+    --drift-duration: 82s;
+  }
+
+  .bokeh-c {
+    --drift-duration: 47s;
+  }
+
+  .cream-a {
+    animation: cream-drift 34s ease-in-out infinite alternate;
+  }
+
+  .cream-b {
+    animation: cream-drift 46s ease-in-out infinite alternate-reverse;
+  }
+
+  .swatch {
+    animation: swatch-drift 9s ease-in-out infinite;
+  }
+
+  /* Standard curve on purpose: the light fades in as it accelerates, holds
+   * at the middle, and fades out as it slows. No snap at either end. */
+  .glint:hover::before,
+  .glint:focus-visible::before {
+    animation: glint-glide var(--glint-duration, 1.3s) cubic-bezier(0.4, 0, 0.2, 1) both;
+  }
+
+  /* A button is a rounded surface, so its film is wider, slower and a shade
+   * iridescent: the light that slides over glass and pigment. */
+  .btn.glint {
+    --glint-width: 70%;
+    --glint-duration: 1.65s;
+    --glint: 0.42;
+  }
+
+  .btn.glint::before {
+    background: linear-gradient(
+      90deg,
+      transparent,
+      color-mix(in oklab, #7dd3fc 26%, transparent) 32%,
+      color-mix(in oklab, #ffffff 50%, transparent) 50%,
+      color-mix(in oklab, #a78bfa 24%, transparent) 66%,
+      transparent
+    );
+  }
+
+  /* A lit bottle, not a painted one: a product image keeps more of its own
+   * colour under the pointer, and warms up as it goes. */
+  .card.card-hover :is(img),
+  .deck-item :is(img) {
+    transition: filter 0.65s var(--ease-out-expo);
+  }
+
+  .card.card-hover:hover :is(img),
+  .deck-item:hover :is(img) {
+    filter: saturate(1.08) brightness(1.05) contrast(1.02);
+  }
+
+  .depth-floor::after {
+    animation: caustic-drift 26s ease-in-out infinite;
+  }
+
+  .depth-beam > i {
+    animation: dust-climb 19s linear infinite;
+  }
+
+  .depth-beam > i + i {
+    animation-duration: 27s;
+    animation-direction: reverse;
+  }
+
+  .gyro-core::before {
+    animation: core-bloom 4.6s var(--ease-out-expo) infinite;
+  }
+
+  .gyro-core::after {
+    animation: core-bloom 4.6s var(--ease-out-expo) 2.3s infinite;
+  }
+
+  .brand-mark:hover::after {
+    opacity: 0.9;
+    animation: prism-turn 9s linear infinite;
+  }
+
+  .title-stage::before {
+    animation: shimmer-run 1.9s var(--ease-out-expo) 0.4s both;
+  }
+
+  .belt::after {
+    content: "";
+    position: absolute;
+    inset: 0 auto 0 0;
+    width: 18%;
+    pointer-events: none;
+    background: linear-gradient(
+      90deg,
+      transparent,
+      color-mix(in oklab, #ffffff 40%, transparent) 46%,
+      color-mix(in oklab, var(--accent) 24%, transparent) 58%,
+      transparent
+    );
+    filter: blur(5px);
+    animation: glint-travel 9s var(--ease-out-expo) infinite;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .starfield,
+  .bokeh {
+    display: none;
+  }
+
+  .glint::before,
+  .title-stage::before,
+  .brand-mark::after,
+  .belt::after {
+    animation: none;
+    opacity: 0 !important;
+  }
+
+  .depth-floor::after,
+  .depth-beam > i,
+  .gyro-core::before,
+  .gyro-core::after,
+  .swatch {
+    animation: none !important;
   }
 }
 
