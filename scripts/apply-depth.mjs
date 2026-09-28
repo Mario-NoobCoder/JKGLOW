@@ -18,8 +18,21 @@ const root = join(dirname(fileURLToPath(import.meta.url)), "..");
 
 const SKIP = ["node_modules", ".git", ".idea", "src", "scripts", "assets"];
 
-/* The long-form legal and utility pages stay sober on purpose. */
-const PAGES = new Set(["index.html", "about.html", "a-propos.html", "contact.html"]);
+/*
+ * The long-form legal and utility pages stay sober on purpose. The brand page
+ * is a selling page like the home page, so it gets the same treatment: it
+ * carries the depth, the hero scene and the stepped section edges, and a
+ * product page is exactly where a visitor expects that to be present.
+ *
+ * Matched on basename, so the French page of each pair is picked up too.
+ */
+const PAGES = new Set([
+  "index.html",
+  "about.html",
+  "a-propos.html",
+  "contact.html",
+  "skin1004.html",
+]);
 
 /* The floor, the sun it rises from, and the core turning in front of it. */
 const HERO_STAGE = [
@@ -385,6 +398,51 @@ function belt(html) {
   return addClassesAt(tidied, enclosingDiv(tidied, tidied.indexOf(track[0])), ["belt"]);
 }
 
+/**
+ * A process list becomes scannable: one slide direction for every step, a
+ * spine class on the list, and a real badge instead of a stack of utilities
+ * that no component rule can override.
+ */
+function numberedSteps(html) {
+  return html.replace(/<ol\b([^>]*)>([\s\S]*?)<\/ol>/g, (m, attrs, inner) => {
+    if (!inner.includes("bar-grow")) return m;
+
+    /* The component owns its own rhythm and its own type, so the utilities
+     * that would outrank it are dropped instead of being fought with
+     * !important. */
+    const list = attrs.replace(/class="([^"]*)"/, (c, cls) => {
+      const tokens = cls.split(/\s+/).filter(Boolean).filter((t) => t !== "space-y-5");
+
+      if (!tokens.includes("steps")) tokens.push("steps");
+
+      return 'class="' + tokens.join(" ") + '"';
+    });
+
+    const body = inner
+      .replace(/\breveal-slide-in-rtl\b/g, "reveal-slide-in")
+      .replace(
+        /(<span class=")bar-grow grid h-9 w-9 shrink-0 place-items-center rounded-full bg-ink-900 text-xs font-bold text-white dark:bg-white dark:text-ink-900"/g,
+        '$1bar-grow badge"'
+      )
+      .replace(/<h3 class="font-semibold">/g, "<h3>")
+      .replace(/<p class="mt-1\.5 text-sm leading-relaxed text-fg-muted">/g, "<p>");
+
+    return "<ol" + list + ">" + body + "</ol>";
+  });
+}
+
+/**
+ * The figures are facts, so they live in the markup as text and the light
+ * travels across them. Counting the digits up under the reader was the one
+ * animation that made a number look like it was still being decided.
+ */
+function staticFigures(html) {
+  return html.replace(
+    /<span class="count-scroll" style="--target:(\d+)"><\/span>/g,
+    (m, digits) => '<span class="num-ink">' + digits + "</span>"
+  );
+}
+
 /** Buttons press into the page instead of sliding over it. */
 function pressedButtons(html) {
   return html.replace(/class="btn (?!btn-3d)/g, 'class="btn btn-3d ');
@@ -476,6 +534,8 @@ for (const file of walk(root)) {
 
   html = liftedSurfaces(html);
   html = stackedIntros(html);
+  html = numberedSteps(html);
+  html = staticFigures(html);
   html = belt(html);
   html = swatchRule(html);
   html = creamField(html);

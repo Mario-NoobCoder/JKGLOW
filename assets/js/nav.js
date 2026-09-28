@@ -28,6 +28,23 @@
     ["meta[name='twitter:description']", "content"],
   ];
 
+  /*
+   * Both audiences reach the same form, so the link that brings them there
+   * carries the answer: ?type=brand for a Korean manufacturer, ?interest=
+   * retailer for a shop that wants to stock us. The option values are
+   * translated, so the mapping is written per language.
+   */
+  var PREFILL = {
+    en: {
+      brand: { biztype: "Korean Beauty Brand", interest: "Distribution partnership" },
+      retailer: { interest: "Becoming a retailer" },
+    },
+    fr: {
+      brand: { biztype: "Korean Beauty Brand", interest: "Partenariat de distribution" },
+      retailer: { interest: "Devenir revendeur" },
+    },
+  };
+
   function isPlainLeftClick(event) {
     return (
       !event.defaultPrevented &&
@@ -145,8 +162,35 @@
     var id = location.hash.slice(1);
     var target = id && document.getElementById(id);
 
+    /* The swapped body is a fresh form, so the query string applies again. */
+    applyPrefill(new URL(location.href));
+
     if (target) target.scrollIntoView({ behavior: "instant", block: "start" });
     else window.scrollTo({ top: 0, behavior: "instant" });
+  }
+
+  /** Preselect what the query string already told us, and nothing more. */
+  function applyPrefill(url) {
+    var table = PREFILL[document.documentElement.lang] || PREFILL.en;
+    var wanted = null;
+
+    if (url.searchParams.get("type") === "brand") wanted = table.brand;
+    else if (url.searchParams.get("interest") === "retailer") wanted = table.retailer;
+
+    if (!wanted) return;
+
+    Object.keys(wanted).forEach(function (id) {
+      var select = document.getElementById(id);
+
+      if (!select) return;
+
+      for (var i = 0; i < select.options.length; i++) {
+        if (select.options[i].value === wanted[id]) {
+          select.value = wanted[id];
+          return;
+        }
+      }
+    });
   }
 
   function withTransition(update) {
@@ -226,4 +270,7 @@
     if (sameDocument(url)) scrollToHash(url, false);
     else navigate(url, false);
   });
+
+  /* A cold load of contact.html?type=brand lands with the form preselected. */
+  applyPrefill(new URL(location.href));
 })();

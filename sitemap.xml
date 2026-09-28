@@ -5,36 +5,49 @@
     <loc>https://www.jkglow.com/index.html</loc>
     <xhtml:link rel="alternate" hreflang="en" href="https://www.jkglow.com/index.html" />
     <xhtml:link rel="alternate" hreflang="fr" href="https://www.jkglow.com/fr/index.html" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.jkglow.com/index.html" />
     <priority>1.0</priority>
-  </url>
-  <url>
-    <loc>https://www.jkglow.com/about.html</loc>
-    <xhtml:link rel="alternate" hreflang="en" href="https://www.jkglow.com/about.html" />
-    <xhtml:link rel="alternate" hreflang="fr" href="https://www.jkglow.com/fr/a-propos.html" />
-    <priority>0.8</priority>
   </url>
   <url>
     <loc>https://www.jkglow.com/contact.html</loc>
     <xhtml:link rel="alternate" hreflang="en" href="https://www.jkglow.com/contact.html" />
     <xhtml:link rel="alternate" hreflang="fr" href="https://www.jkglow.com/fr/contact.html" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.jkglow.com/contact.html" />
     <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://www.jkglow.com/skin1004.html</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.jkglow.com/skin1004.html" />
+    <xhtml:link rel="alternate" hreflang="fr" href="https://www.jkglow.com/fr/skin1004.html" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.jkglow.com/skin1004.html" />
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://www.jkglow.com/about.html</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.jkglow.com/about.html" />
+    <xhtml:link rel="alternate" hreflang="fr" href="https://www.jkglow.com/fr/a-propos.html" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.jkglow.com/about.html" />
+    <priority>0.8</priority>
   </url>
   <url>
     <loc>https://www.jkglow.com/legal.html</loc>
     <xhtml:link rel="alternate" hreflang="en" href="https://www.jkglow.com/legal.html" />
     <xhtml:link rel="alternate" hreflang="fr" href="https://www.jkglow.com/fr/mentions-legales.html" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.jkglow.com/legal.html" />
     <priority>0.3</priority>
   </url>
   <url>
     <loc>https://www.jkglow.com/privacy.html</loc>
     <xhtml:link rel="alternate" hreflang="en" href="https://www.jkglow.com/privacy.html" />
     <xhtml:link rel="alternate" hreflang="fr" href="https://www.jkglow.com/fr/politique-de-confidentialite.html" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.jkglow.com/privacy.html" />
     <priority>0.3</priority>
   </url>
   <url>
     <loc>https://www.jkglow.com/thanks.html</loc>
     <xhtml:link rel="alternate" hreflang="en" href="https://www.jkglow.com/thanks.html" />
     <xhtml:link rel="alternate" hreflang="fr" href="https://www.jkglow.com/fr/thanks.html" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.jkglow.com/thanks.html" />
     <priority>0.2</priority>
   </url>
 </urlset>

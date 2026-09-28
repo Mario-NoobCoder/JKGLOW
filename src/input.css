@@ -118,13 +118,6 @@
     )
 );
 
-@property --num {
-  syntax: "<integer>";
-  initial-value: 0;
-  inherits: false;
-}
-
-/* Rotating conic ring, driven by @keyframes border-spin. */
 @property --ring-angle {
   syntax: "<angle>";
   initial-value: 0deg;
@@ -420,18 +413,12 @@
       opacity: 0;
       transform: translate3d(calc(var(--from-x, -3rem)), 0, 0);
     }
+    45% {
+      opacity: 1;
+    }
     to {
       opacity: 1;
       transform: none;
-    }
-  }
-
-  @keyframes count-up {
-    from {
-      --num: 0;
-    }
-    to {
-      --num: var(--target);
     }
   }
 
@@ -954,16 +941,19 @@
     }
   }
 
-  @keyframes count-in {
-    from {
-      --num: 0;
-    }
-    to {
-      --num: var(--target);
-    }
+  /* A figure keeps its value and is given the light instead: one wash that
+ * crosses the digits as the section arrives, then the number rests. Nothing
+ * about the number itself ever changes while it is on screen. */
+@keyframes num-wash {
+  from {
+    background-position: 0% 0;
   }
+  to {
+    background-position: 100% 0;
+  }
+}
 
-  /* Scroll-driven: a rule that draws itself as the section arrives */
+/* Scroll-driven: a rule that draws itself as the section arrives */
   @keyframes rule-draw {
     from {
       transform: scaleX(0);
@@ -1562,15 +1552,36 @@ html:has(#jkglow-theme:checked) {
     outline-offset: 3px;
   }
 
-  /* Counting numbers, degrades to the final value without @property */
-  .counter {
-    --num: var(--target);
-    counter-reset: n var(--num);
-    animation: count-up 2.2s var(--ease-out-expo) both;
+  /* A figure keeps its value and is given the light instead. The digits are
+   * real text in the markup, so they are readable with no CSS at all, and
+   * the colour is only handed over when the browser can clip a background
+   * to the glyphs. */
+  .num-ink {
+    position: relative;
+    display: inline-block;
+    font-variant-numeric: tabular-nums lining-nums;
   }
 
-  .counter::after {
-    content: counter(n);
+  @supports ((background-clip: text) or (-webkit-background-clip: text)) {
+    .num-ink {
+      background-image: linear-gradient(
+        100deg,
+        var(--accent) 0 40%,
+        color-mix(in oklab, #ffffff 82%, var(--accent)) 50%,
+        var(--accent) 60% 100%
+      );
+      background-size: 240% 100%;
+      background-position: 0% 0;
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
+  }
+
+  @media (forced-colors: active) {
+    .num-ink {
+      color: CanvasText;
+    }
   }
 
   /* Decorative rules that glow on hover */
@@ -2066,16 +2077,88 @@ html:has(#jkglow-theme:checked) {
     animation-timeline: scroll(root block);
   }
 
-  .count-scroll {
-    --num: var(--target);
-    counter-reset: n var(--num);
-    animation: count-in linear both;
-    animation-timeline: view();
-    animation-range: entry 20% cover 55%;
-  }
+  /* ------------------------------------------------------------------ *
+   * Numbered steps
+   *
+   * A process has to be readable at a glance. One direction of travel, a
+   * spine that joins the numbers so the order is obvious without reading,
+   * and copy that reaches full contrast as soon as it is on screen instead
+   * of being parked half faded by a long scroll range.
+   * ------------------------------------------------------------------ */
+  @layer components {
+    .steps {
+      list-style: none;
+      padding: 0;
+    }
 
-  .count-scroll::after {
-    content: counter(n);
+    .steps > li {
+      position: relative;
+    }
+
+    /* The spine: a hairline running from one number down to the next. */
+    .steps > li::before {
+      content: "";
+      position: absolute;
+      left: 1.1875rem;
+      z-index: 0;
+      top: 2.75rem;
+      bottom: -1.25rem;
+      width: 2px;
+      border-radius: 999px;
+      background: linear-gradient(
+        180deg,
+        color-mix(in oklab, var(--accent) 50%, transparent),
+        color-mix(in oklab, var(--accent) 14%, transparent)
+      );
+    }
+
+    .steps > li:first-child::before {
+      display: none;
+    }
+
+    /* The number. A filled disc with a ring of surface around it, so it
+     * reads as a step marker and never as a smudge on the background. */
+    .steps .badge {
+      position: relative;
+      z-index: 1;
+      display: grid;
+      flex: 0 0 auto;
+      place-items: center;
+      width: 2.375rem;
+      height: 2.375rem;
+      border-radius: 999px;
+      background-color: var(--accent);
+      color: var(--accent-fg);
+      font-size: 0.8125rem;
+      font-weight: 700;
+      font-variant-numeric: tabular-nums;
+      box-shadow: 0 0 0 4px var(--surface);
+    }
+
+    /* Copy: one size up from the body text, and a hair darker than muted,
+     * which keeps it above 4.5:1 on both the white and the subtle ground. */
+    .steps h3 {
+      font-size: 1.0625rem;
+      font-weight: 600;
+      line-height: 1.35;
+      color: var(--fg);
+      text-wrap: balance;
+    }
+
+    .steps p {
+      margin-top: 0.375rem;
+      max-width: 46ch;
+      font-size: 0.9375rem;
+      line-height: 1.65;
+      color: color-mix(in oklab, var(--fg-muted) 82%, var(--fg));
+      text-wrap: pretty;
+    }
+
+    /* A little more air between steps, so the eye can drop from one to the
+     * next instead of running the four paragraphs together. */
+    .steps > li + li {
+      margin-top: 1.75rem;
+    }
   }
 
   /* Reading-progress bar, driven by the root scroll timeline */
@@ -2504,12 +2587,26 @@ html:has(#jkglow-theme:checked) {
         animation: reveal-slide-in linear both;
       }
 
+      /* The wash on a figure is a one-shot pass, not a loop. */
+      .num-ink {
+        animation: num-wash 1s linear both;
+        animation-timeline: view();
+        animation-range: entry 12% entry 78%;
+      }
+
       /*
        * Stagger a whole group without touching the markup: each child reads
        * its own --i, assigned by nth-child below.
        */
       .stagger-children > * {
         animation-range: entry calc(4% + var(--i, 0) * 7%) cover calc(30% + var(--i, 0) * 7%);
+      }
+
+      /* Step copy finishes early inside the entry phase. A long range leaves
+       * a paragraph parked at half opacity whenever the reader stops
+       * scrolling, and a half faded paragraph is a paragraph nobody reads. */
+      .steps > li {
+        animation-range: entry calc(2% + var(--i, 0) * 6%) entry calc(42% + var(--i, 0) * 6%);
       }
 
       .stagger-children > *:nth-child(1) { --i: 1; }
@@ -2632,7 +2729,6 @@ html:has(#jkglow-theme:checked) {
     }
 
     .reveal,
-    .counter,
     .scroll-fade,
     .scroll-fade-late,
     .parallax,
@@ -2698,7 +2794,6 @@ html:has(#jkglow-theme:checked) {
     .blob,
     .glow-breathe,
     .skeleton,
-    .count-scroll,
     .progress-ring,
     .spin-slow,
     .spin-slower,

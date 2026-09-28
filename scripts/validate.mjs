@@ -82,31 +82,50 @@ for (const file of htmlFiles) {
     const attrs = m[1];
     const body = m[2].trim();
     const src = attrs.match(/\bsrc\s*=\s*"([^"]+)"/i);
-    const path = src ? src[1].split("/").pop() : "?";
+    const type = (attrs.match(/\btype\s*=\s*"([^"]+)"/i) || [])[1] || "";
 
-    if (body) fail(rel, "contains an inline <script> block");
+    /*
+     * Structured data is the one legitimate inline payload: search engines read
+     * it, browsers do not execute it, and it cannot be moved to a file because
+     * it has to be in the document head. Anything else inline stays an error.
+     */
+    if (/application\/ld\+json/i.test(type)) {
+      if (src) fail(rel, "loads JSON-LD from a src, which is not valid structured data");
 
-    if (!src) continue;
+      try {
+        JSON.parse(body);
+      } catch {
+        fail(rel, "contains <script type=\"application/ld+json\"> that is not valid JSON");
+      }
 
-    if (!ALLOWED_SCRIPTS.includes(src[1])) {
-      fail(rel, `references a script file: ${src[1]}`);
       continue;
     }
 
-    /*
-     * theme.js sets data-theme on <html>, so it has to block parsing. nav.js
-     * only upgrades navigation, so deferring it is correct.
-     */
-    if (path === "theme.js" && /\basync\b|\bdefer\b/i.test(attrs)) {
-      fail(rel, "defers theme.js, which reintroduces a flash of the wrong theme");
-    }
+    if (body) fail(rel, "contains an inline <script> block");
 
-    if (path === "nav.js" && /\basync\b/i.test(attrs)) {
-      fail(rel, "loads nav.js async, which races the first click");
-    }
+    if (src) {
+      if (!ALLOWED_SCRIPTS.includes(src[1])) {
+        fail(rel, `references a script file: ${src[1]}`);
+        continue;
+      }
 
-    if (/\btype\s*=\s*["']?module/i.test(attrs)) {
-      fail(rel, `loads ${path} as a module`);
+      const path = src[1].split("/").pop();
+
+      /*
+       * theme.js sets data-theme on <html>, so it has to block parsing. nav.js
+       * only upgrades navigation, so deferring it is correct.
+       */
+      if (path === "theme.js" && /\basync\b|\bdefer\b/i.test(attrs)) {
+        fail(rel, "defers theme.js, which reintroduces a flash of the wrong theme");
+      }
+
+      if (path === "nav.js" && /\basync\b/i.test(attrs)) {
+        fail(rel, "loads nav.js async, which races the first click");
+      }
+
+      if (/\btype\s*=\s*["']?module/i.test(attrs)) {
+        fail(rel, `loads ${path} as a module`);
+      }
     }
   }
 
@@ -147,7 +166,7 @@ for (const file of htmlFiles) {
     if (/^(https?:|mailto:|tel:|data:)/i.test(href)) continue;
 
     const [path, anchor] = href.split("#");
-    const target = resolve(dir, decodeURIComponent(path));
+    const target = resolve(dir, decodeURIComponent(path.split("?")[0]));
 
     if (!existsSync(target)) {
       fail(rel, `link target missing: ${href}`);
@@ -275,6 +294,23 @@ for (const file of htmlFiles) {
   if ((html.match(/<h1[\s>]/gi) || []).length !== 1) {
     fail(rel, `expected exactly one <h1>, found ${(html.match(/<h1[\s>]/gi) || []).length}`);
   }
+
+  /* ---------------- search metadata ---------------- */
+
+  const titles = [...html.matchAll(/<title>([\s\S]*?)<\/title>/gi)];
+  if (titles.length !== 1) fail(rel, `expected exactly one <title>, found ${titles.length}`);
+  else if (titles[0][1].length > 60) notes.push(`${rel}: <title> is ${titles[0][1].length} chars (search results truncate near 60)`);
+
+  const descriptions = [...html.matchAll(/<meta\s+name="description"\s+content="([^"]*)"/gi)];
+  if (descriptions.length !== 1) fail(rel, `expected exactly one meta description, found ${descriptions.length}`);
+  else if (descriptions[0][1].length > 160) notes.push(`${rel}: meta description is ${descriptions[0][1].length} chars (aim <= 160)`);
+
+  const canonicals = [...html.matchAll(/<link\s+rel="canonical"\s+href="([^"]*)"/gi)];
+  if (canonicals.length !== 1) fail(rel, `expected exactly one canonical link, found ${canonicals.length}`);
+  else if (!/^https:\/\//.test(canonicals[0][1])) fail(rel, `canonical is not absolute: ${canonicals[0][1]}`);
+
+  const ld = [...html.matchAll(/<script type="application\/ld\+json">([\s\S]*?)<\/script>/gi)];
+  if (ld.length !== 1) fail(rel, `expected exactly one JSON-LD block, found ${ld.length}`);
 }
 
 console.log(`Checked ${htmlFiles.length} HTML files, ${totalRefs} references.`);
